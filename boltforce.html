@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BoltForce — The Salesforce Dev Toolkit | SCube</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#f59e0b;--amber:#d97706;--bg:#0c0800;
+  --navy:#0e0a00;--dark:#141002;
+  --white:#fff;--text-dim:rgba(255,255,255,0.6);--text-dimmer:rgba(255,255,255,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 20% 40%,rgba(245,158,11,0.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 80% 15%,rgba(217,119,6,0.09) 0%,transparent 50%),
+             linear-gradient(135deg,#080600 0%,#0e0a00 50%,#120d00 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(245,158,11,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,158,11,0.04) 1px,transparent 1px);
+  background-size:50px 50px;}
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.p{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.7),transparent);
+  animation:fp linear infinite;}
+@keyframes fp{0%{transform:translateY(110vh) scale(0);opacity:0;}10%{opacity:0.7;}90%{opacity:0.15;}100%{transform:translateY(-10vh) translateX(var(--d)) scale(1.2);opacity:0;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(245,158,11,0.3);}50%{box-shadow:0 0 40px rgba(245,158,11,0.6);}}
+@keyframes codeScroll{0%{transform:translateY(0);}100%{transform:translateY(-50%);}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:66px;
+  display:flex;align-items:center;padding:0 48px;gap:0;
+  background:rgba(8,6,0,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(245,158,11,0.12);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#d97706,#f59e0b);
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;
+  box-shadow:0 0 18px rgba(245,158,11,0.4);}
+.n-name{font-size:20px;font-weight:800;color:white;}
+.n-name span{color:var(--gold);}
+.n-links{display:flex;gap:4px;margin-left:auto;align-items:center;}
+.n-link{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:500;padding:7px 14px;border-radius:7px;transition:all 0.2s;}
+.n-link:hover{color:white;background:rgba(255,255,255,0.06);}
+.n-link.active{color:var(--gold);}
+.n-cta{background:linear-gradient(135deg,#d97706,#f59e0b);color:#1a0e00;text-decoration:none;font-size:13px;font-weight:800;padding:8px 18px;border-radius:8px;margin-left:8px;box-shadow:0 0 16px rgba(245,158,11,0.35);transition:all 0.2s;}
+.n-cta:hover{box-shadow:0 0 28px rgba(245,158,11,0.55);transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:90px 48px 80px;position:relative;z-index:1;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.h-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);color:var(--gold);border-radius:30px;padding:5px 15px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite;}
+.h-title{font-size:clamp(38px,5vw,66px);font-weight:900;line-height:1.08;letter-spacing:-0.04em;margin-bottom:18px;}
+.h-title .hl{background:linear-gradient(135deg,#fde68a 0%,#f59e0b 50%,#d97706 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.h-sub{font-size:17px;color:var(--text-dim);line-height:1.7;margin-bottom:32px;}
+.h-tech-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.tech-pill{padding:5px 13px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:var(--gold);}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-bf{background:linear-gradient(135deg,#d97706,#f59e0b);color:#1a0e00;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:800;box-shadow:0 4px 24px rgba(245,158,11,0.4);transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-bf:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(245,158,11,0.5);}
+.btn-ghost{background:rgba(255,255,255,0.05);color:white;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,0.12);transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-ghost:hover{background:rgba(255,255,255,0.09);}
+
+/* CODE TERMINAL MOCKUP */
+.terminal-wrap{position:relative;}
+.terminal{
+  width:100%;max-width:520px;background:#0d0d0d;border:1px solid rgba(245,158,11,0.25);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,0.6),0 0 50px rgba(245,158,11,0.1);
+  animation:floatT 6s ease-in-out infinite;
+}
+@keyframes floatT{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.t-titlebar{background:#1a1a1a;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.t-dot{width:12px;height:12px;border-radius:50%;}
+.t-title{font-size:12px;color:rgba(255,255,255,0.5);margin-left:8px;font-family:monospace;}
+.t-body{padding:18px;height:360px;overflow:hidden;position:relative;}
+.t-code{font-family:'JetBrains Mono','Fira Code',monospace;font-size:12px;line-height:1.7;animation:codeScroll 18s linear infinite;}
+.c-kw{color:#f59e0b;}.c-fn{color:#34d399;}.c-str{color:#a78bfa;}.c-cmt{color:#4b5563;}.c-op{color:#e2e8f0;}.c-num{color:#60a5fa;}
+
+/* Floating panels */
+.fp{
+  position:absolute;background:rgba(20,18,0,0.95);border:1px solid rgba(245,158,11,0.25);
+  border-radius:12px;padding:14px;box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  animation:floatBadge ease-in-out infinite;
+}
+@keyframes floatBadge{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* FEATURES */
+section.feat{position:relative;z-index:1;padding:100px 48px;}
+.feat-inner{max-width:1200px;margin:0 auto;}
+.s-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);color:var(--gold);border-radius:30px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:14px;}
+.s-title{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px;}
+.s-sub{font-size:16px;color:var(--text-dim);line-height:1.7;max-width:560px;margin-bottom:50px;}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.bcard{background:rgba(255,255,255,0.02);border:1px solid rgba(245,158,11,0.09);border-radius:18px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden;}
+.bcard:hover{background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.28);transform:translateY(-4px);}
+.bcard.wide{grid-column:span 2;}
+.bcard-icon{font-size:32px;margin-bottom:14px;display:block;}
+.bcard-title{font-size:18px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}
+.bcard-desc{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.bcard-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:12px;}
+.bcard-list li{font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+.bcard-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.bcard-highlight{position:absolute;top:0;right:0;background:linear-gradient(135deg,rgba(245,158,11,0.12),transparent);width:60%;height:60%;pointer-events:none;border-radius:0 18px 0 100%;}
+.bcard-highlight2{background:linear-gradient(135deg,rgba(245,158,11,0.08),transparent);}
+
+/* CODE COVERAGE VISUAL */
+.cov-bars{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.cov-row{display:flex;align-items:center;gap:10px;}
+.cov-label{font-size:11px;color:rgba(255,255,255,0.5);width:100px;flex-shrink:0;font-family:monospace;}
+.cov-track{flex:1;height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;}
+.cov-fill{height:100%;border-radius:4px;transition:width 1.2s ease;}
+.cov-pct{font-size:11px;font-family:monospace;width:36px;text-align:right;}
+
+/* COMMAND PALETTE */
+.cp-mockup{background:#111;border:1px solid rgba(245,158,11,0.3);border-radius:12px;overflow:hidden;margin-top:16px;}
+.cp-input{padding:12px 14px;background:#1a1a1a;border-bottom:1px solid rgba(255,255,255,0.06);font-size:13px;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:8px;}
+.cp-input span{color:rgba(255,255,255,0.3);}
+.cp-results{padding:6px;}
+.cp-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:7px;transition:all 0.15s;}
+.cp-item.a{background:rgba(245,158,11,0.12);}
+.cp-item-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.cp-item-label{font-size:12px;font-weight:600;}
+.cp-item-desc{font-size:10px;color:rgba(255,255,255,0.35);margin-top:1px;}
+.cp-kbd{margin-left:auto;font-size:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px 6px;color:rgba(255,255,255,0.4);font-family:monospace;}
+
+/* ORG SWITCHER */
+.org-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.org-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px;transition:all 0.2s;}
+.org-card:hover{background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2);}
+.org-card.active-org{border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.06);}
+.org-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.org-name{font-size:13px;font-weight:700;}
+.org-type{font-size:10px;color:rgba(255,255,255,0.4);margin-top:1px;}
+.org-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid rgba(245,158,11,0.1);background:rgba(8,6,0,0.5);}
+.f-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.f-links{display:flex;gap:20px;}
+.f-link{color:rgba(255,255,255,0.4);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.f-link:hover{color:var(--gold);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.65s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s;}.rd2{transition-delay:0.2s;}.rd3{transition-delay:0.3s;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.25);border-radius:3px;}
+@media(max-width:900px){nav{padding:0 16px;}.hero{padding:86px 16px 60px;}.hero-inner{grid-template-columns:1fr;}section.feat{padding:60px 16px;}.bento{grid-template-columns:1fr;}.bcard.wide{grid-column:span 1;}}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+<div class="particles" id="pts"></div>
+
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <div class="n-links">
+    <a href="index.html" class="n-link">← Home</a>
+    <a href="linkedin.html" class="n-link">LinkedBridge</a>
+    <a href="boltforce.html" class="n-link active">BoltForce</a>
+    <a href="gmail.html" class="n-link">GmailSync</a>
+    <a href="#install" class="n-cta">Install Free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="h-badge"><span class="h-dot"></span>Salesforce Dev Toolkit</div>
+      <h1 class="h-title"><span class="hl">BoltForce</span><br>The Power Tool for<br>Salesforce Admins & Devs</h1>
+      <p class="h-sub">AI-powered SOQL editor, instant permission analysis, metadata explorer, live API tester, code coverage visualiser, and 10-org switcher — all inside Chrome, right where you work in Salesforce.</p>
+      <div class="h-tech-row">
+        <div class="tech-pill">⚡ AI SOQL</div>
+        <div class="tech-pill">🔐 Permissions</div>
+        <div class="tech-pill">🗂 Metadata</div>
+        <div class="tech-pill">🔀 Org Switcher</div>
+        <div class="tech-pill">📊 Coverage</div>
+        <div class="tech-pill">🔌 API Tester</div>
+      </div>
+      <div class="h-btns">
+        <a href="#install" class="btn-bf">Install BoltForce Free →</a>
+        <a href="#features" class="btn-ghost">See Features</a>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="terminal-wrap">
+      <div class="fp" style="top:-24px;right:0;animation-duration:4.5s;min-width:220px;">
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:5px;">✨ AI SOQL Suggestion</div>
+        <div style="font-size:11px;font-family:monospace;color:#f59e0b;">SELECT Id, Name, Amount<br>FROM Opportunity<br>WHERE StageName = 'Closed Won'<br>AND CloseDate = THIS_YEAR</div>
+        <div style="display:flex;gap:5px;margin-top:8px;">
+          <button style="background:linear-gradient(135deg,#d97706,#f59e0b);color:#1a0e00;border:none;border-radius:5px;padding:4px 10px;font-size:10px;font-weight:800;cursor:pointer;">Use Query</button>
+          <button style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:4px 10px;font-size:10px;cursor:pointer;">Edit</button>
+        </div>
+      </div>
+      <div class="fp" style="bottom:20px;left:-30px;animation-duration:5.5s;animation-delay:1.5s;">
+        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:5px;">🔐 Permission Check</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span style="color:#22c55e;">✓</span> Read · Account</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span style="color:#22c55e;">✓</span> Edit · Opportunity</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span style="color:#ef4444;">✗</span> Delete · Lead</div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:11px;"><span style="color:#f59e0b;">~</span> View All · Contact</div>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="t-titlebar">
+          <div class="t-dot" style="background:#ef4444;"></div>
+          <div class="t-dot" style="background:#f59e0b;"></div>
+          <div class="t-dot" style="background:#22c55e;"></div>
+          <span class="t-title">BoltForce — SOQL Editor · Org: my-org.sandbox</span>
+        </div>
+        <div class="t-body">
+          <div class="t-code">
+<span class="c-cmt">-- BoltForce SOQL Editor • AI-Powered</span>
+<span class="c-kw">SELECT</span> <span class="c-op">Id, Name, Email,</span>
+       <span class="c-op">Account.Name, Title,</span>
+       <span class="c-fn">CALENDAR_YEAR</span><span class="c-op">(CreatedDate)</span>
+<span class="c-kw">FROM</span>   <span class="c-str">Contact</span>
+<span class="c-kw">WHERE</span>  <span class="c-op">Account.Industry = </span><span class="c-str">'Technology'</span>
+  <span class="c-kw">AND</span>  <span class="c-op">LastModifiedDate = </span><span class="c-fn">LAST_N_DAYS</span><span class="c-op">:</span><span class="c-num">30</span>
+<span class="c-kw">ORDER BY</span> <span class="c-op">Name</span>
+<span class="c-kw">LIMIT</span>  <span class="c-num">200</span>
+
+<span class="c-cmt">-- 127 rows returned in 0.38s</span>
+<span class="c-cmt">-- Export: CSV  JSON  Clipboard</span>
+
+<span class="c-kw">SELECT</span> <span class="c-op">Id, StageName,</span>
+       <span class="c-fn">SUM</span><span class="c-op">(Amount) TotalAmount</span>
+<span class="c-kw">FROM</span>   <span class="c-str">Opportunity</span>
+<span class="c-kw">WHERE</span>  <span class="c-op">CloseDate = </span><span class="c-fn">THIS_YEAR</span>
+<span class="c-kw">GROUP BY</span> <span class="c-op">StageName</span>
+
+<span class="c-cmt">-- StageName      TotalAmount</span>
+<span class="c-cmt">-- Prospecting    $1,240,000</span>
+<span class="c-cmt">-- Closed Won     $3,820,000</span>
+<span class="c-cmt">-- Closed Lost    $540,000</span>
+
+<span class="c-kw">SELECT</span> <span class="c-op">Id, Name, Email,</span>
+       <span class="c-op">Account.Name, Title,</span>
+       <span class="c-fn">CALENDAR_YEAR</span><span class="c-op">(CreatedDate)</span>
+<span class="c-kw">FROM</span>   <span class="c-str">Contact</span>
+<span class="c-kw">WHERE</span>  <span class="c-op">Account.Industry = </span><span class="c-str">'Technology'</span>
+  <span class="c-kw">AND</span>  <span class="c-op">LastModifiedDate = </span><span class="c-fn">LAST_N_DAYS</span><span class="c-op">:</span><span class="c-num">30</span>
+<span class="c-kw">ORDER BY</span> <span class="c-op">Name</span>
+<span class="c-kw">LIMIT</span>  <span class="c-num">200</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="feat" id="features">
+  <div class="feat-inner">
+    <div class="s-badge reveal">✦ Features</div>
+    <h2 class="s-title reveal">10 tools. One extension.<br>Zero org-switching headaches.</h2>
+    <p class="s-sub reveal">BoltForce embeds a complete developer toolkit inside the browser — no separate apps, no copy-pasting into Workbench, no context-switching.</p>
+    <div class="bento">
+      <!-- AI SOQL -->
+      <div class="bcard wide reveal">
+        <div class="bcard-highlight"></div>
+        <span class="bcard-icon">⚡</span>
+        <div class="bcard-title">AI-Powered SOQL Editor</div>
+        <div class="bcard-desc">Type a plain-English description and get a ready-to-run SOQL query. Syntax-highlighted code editor with auto-complete, query history, multi-tab sessions, and one-click export to CSV / JSON / clipboard.</div>
+        <ul class="bcard-list">
+          <li>Natural language → SOQL in seconds</li>
+          <li>Aggregate functions: SUM, COUNT, AVG, GROUP BY</li>
+          <li>Multi-query tabs with full history</li>
+          <li>Export results to CSV, JSON, or clipboard</li>
+        </ul>
+      </div>
+      <!-- Permission Analyser -->
+      <div class="bcard reveal rd1">
+        <span class="bcard-icon">🔐</span>
+        <div class="bcard-title">Permission Analyser</div>
+        <div class="bcard-desc">Instantly see what a Profile or Permission Set can and cannot do — Object CRUD, Field-Level Security, Apex Classes, VF Pages, and Sharing Rules — all in a filterable table.</div>
+      </div>
+      <!-- ORG SWITCHER -->
+      <div class="bcard reveal rd2">
+        <span class="bcard-icon">🔀</span>
+        <div class="bcard-title">10-Org Switcher</div>
+        <div class="bcard-desc">Authenticate up to 10 orgs (Production + Sandboxes). Switch with one click. Color-coded environment badges so you never accidentally run a query in Production.</div>
+        <div class="org-list">
+          <div class="org-card active-org">
+            <div class="org-dot" style="background:#22c55e;box-shadow:0 0 6px #22c55e;"></div>
+            <div><div class="org-name">ACME · Sandbox</div><div class="org-type">Developer Sandbox</div></div>
+            <div class="org-badge" style="background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);">Active</div>
+          </div>
+          <div class="org-card">
+            <div class="org-dot" style="background:#f59e0b;"></div>
+            <div><div class="org-name">ACME · Full Copy</div><div class="org-type">Full Copy Sandbox</div></div>
+            <div class="org-badge" style="background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);">Staging</div>
+          </div>
+          <div class="org-card">
+            <div class="org-dot" style="background:#ef4444;"></div>
+            <div><div class="org-name">ACME · Production</div><div class="org-type">Production Org</div></div>
+            <div class="org-badge" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.25);">PROD</div>
+          </div>
+        </div>
+      </div>
+      <!-- CODE COVERAGE -->
+      <div class="bcard wide reveal">
+        <div class="bcard-highlight bcard-highlight2"></div>
+        <span class="bcard-icon">📊</span>
+        <div class="bcard-title">Code Coverage Visualiser</div>
+        <div class="bcard-desc">See Apex class test coverage right in the browser without opening the Setup UI. Filter by class name, set a minimum coverage threshold, and see line-by-line coverage with red/green highlighting.</div>
+        <div class="cov-bars" id="covBars">
+          <div class="cov-row">
+            <span class="cov-label">AccountHelper</span>
+            <div class="cov-track"><div class="cov-fill" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a);" data-pct="94"></div></div>
+            <span class="cov-pct" style="color:#22c55e;">94%</span>
+          </div>
+          <div class="cov-row">
+            <span class="cov-label">LeadConverter</span>
+            <div class="cov-track"><div class="cov-fill" style="width:0%;background:linear-gradient(90deg,#22c55e,#16a34a);" data-pct="87"></div></div>
+            <span class="cov-pct" style="color:#22c55e;">87%</span>
+          </div>
+          <div class="cov-row">
+            <span class="cov-label">CaseEscalation</span>
+            <div class="cov-track"><div class="cov-fill" style="width:0%;background:linear-gradient(90deg,#f59e0b,#d97706);" data-pct="72"></div></div>
+            <span class="cov-pct" style="color:#f59e0b;">72%</span>
+          </div>
+          <div class="cov-row">
+            <span class="cov-label">EmailService</span>
+            <div class="cov-track"><div class="cov-fill" style="width:0%;background:linear-gradient(90deg,#ef4444,#dc2626);" data-pct="42"></div></div>
+            <span class="cov-pct" style="color:#ef4444;">42%</span>
+          </div>
+        </div>
+      </div>
+      <!-- METADATA EXPLORER -->
+      <div class="bcard reveal">
+        <span class="bcard-icon">🗂️</span>
+        <div class="bcard-title">Metadata Explorer</div>
+        <div class="bcard-desc">Browse all Custom Objects, Fields, Validation Rules, Workflow Rules, and Flows. Search and filter. Click any item to see its full API name, description, and deployment status.</div>
+      </div>
+      <!-- COMMAND PALETTE -->
+      <div class="bcard reveal rd1">
+        <span class="bcard-icon">⌘</span>
+        <div class="bcard-title">Command Palette</div>
+        <div class="bcard-desc">Open with Cmd+Shift+K. Search any BoltForce action, recent query, org, or metadata item. Execute without leaving your keyboard.</div>
+        <div class="cp-mockup">
+          <div class="cp-input"><span>⌘</span> Search actions, orgs, queries…</div>
+          <div class="cp-results">
+            <div class="cp-item a"><div class="cp-item-icon" style="background:rgba(245,158,11,0.12);">⚡</div><div><div class="cp-item-label">Run SOQL</div><div class="cp-item-desc">Open SOQL editor</div></div><div class="cp-kbd">⏎</div></div>
+            <div class="cp-item"><div class="cp-item-icon" style="background:rgba(99,102,241,0.12);">🔀</div><div><div class="cp-item-label">Switch Org</div><div class="cp-item-desc">Change active org</div></div><div class="cp-kbd">⌘O</div></div>
+            <div class="cp-item"><div class="cp-item-icon" style="background:rgba(34,197,94,0.12);">🔐</div><div><div class="cp-item-label">Perm Analyser</div><div class="cp-item-desc">Check permissions</div></div><div class="cp-kbd">⌘P</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- API TESTER -->
+      <div class="bcard reveal rd2">
+        <span class="bcard-icon">🔌</span>
+        <div class="bcard-title">REST API Tester</div>
+        <div class="bcard-desc">Fire authenticated Salesforce REST API calls directly — GET, POST, PATCH, DELETE. Supports any endpoint with live JSON response viewer and copy-to-curl.</div>
+      </div>
+      <!-- DEBUG LOG -->
+      <div class="bcard reveal">
+        <span class="bcard-icon">🐛</span>
+        <div class="bcard-title">Debug Log Viewer</div>
+        <div class="bcard-desc">View, filter and download debug logs by user. Parse Apex log lines with color-coded categories (SOQL, DML, Limits, Callouts). One-click log-level editor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="install">
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="n-cube" style="width:30px;height:30px;font-size:14px;">S</div>
+      <span style="font-size:17px;font-weight:800;">SCube · BoltForce</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">Home</a>
+      <a href="linkedin.html" class="f-link">LinkedBridge</a>
+      <a href="gmail.html" class="f-link">GmailSync</a>
+      <a href="https://scubedevelopmentteam.github.io/privacy/" class="f-link">Privacy</a>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.3);">© 2026 SCube · BoltForce</div>
+  </div>
+</footer>
+
+<script>
+const pts=document.getElementById('pts');
+for(let i=0;i<18;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*3+1;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*20+14}s;animation-delay:${Math.random()*14}s;--d:${(Math.random()-0.5)*160}px;`;pts.appendChild(p);}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');if(el.target.querySelector('.cov-fill')){setTimeout(()=>{el.target.querySelectorAll('.cov-fill').forEach(b=>{b.style.width=b.dataset.pct+'%';});},200);}};});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

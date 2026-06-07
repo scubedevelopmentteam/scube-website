@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LinkedBridge Pro — LinkedIn to Salesforce, HubSpot & Zoho | SCube</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --primary:#0077b5;--accent:#00a0dc;--navy:#001226;
+  --blue1:#0176D3;--blue2:#1589EE;--cyan:#00A1E0;
+  --white:#fff;--text-dim:rgba(255,255,255,0.6);--text-dimmer:rgba(255,255,255,0.4);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;}
+
+/* BG */
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 10% 40%,rgba(0,119,181,0.18) 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 15%,rgba(0,160,220,0.14) 0%,transparent 50%),
+             linear-gradient(135deg,#000c1e 0%,#001226 50%,#00183a 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,160,220,0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,160,220,0.05) 1px,transparent 1px);
+  background-size:50px 50px;}
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.p{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(0,160,220,0.7),transparent);
+  animation:fp linear infinite;}
+@keyframes fp{0%{transform:translateY(110vh) scale(0);opacity:0;}10%{opacity:0.8;}90%{opacity:0.2;}100%{transform:translateY(-10vh) translateX(var(--d)) scale(1.2);opacity:0;}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:66px;
+  display:flex;align-items:center;padding:0 48px;gap:0;
+  background:rgba(0,12,30,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,160,220,0.15);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0077b5,#00a0dc);
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;
+  box-shadow:0 0 18px rgba(0,160,220,0.4);}
+.n-name{font-size:20px;font-weight:800;color:white;}
+.n-name span{color:var(--cyan);}
+.n-links{display:flex;gap:4px;margin-left:auto;align-items:center;}
+.n-link{color:rgba(255,255,255,0.65);text-decoration:none;font-size:13px;font-weight:500;padding:7px 14px;border-radius:7px;transition:all 0.2s;}
+.n-link:hover{color:white;background:rgba(255,255,255,0.07);}
+.n-link.active{color:var(--accent);}
+.n-cta{background:linear-gradient(135deg,#0077b5,#00a0dc);color:white;text-decoration:none;font-size:13px;font-weight:700;padding:8px 18px;border-radius:8px;margin-left:8px;box-shadow:0 0 16px rgba(0,119,181,0.35);transition:all 0.2s;}
+.n-cta:hover{box-shadow:0 0 28px rgba(0,160,220,0.5);transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:90px 48px 80px;position:relative;z-index:1;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.h-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,119,181,0.15);border:1px solid rgba(0,160,220,0.3);color:var(--accent);border-radius:30px;padding:5px 15px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:20px;}
+.h-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease infinite;}
+.h-title{font-size:clamp(38px,5vw,66px);font-weight:900;line-height:1.08;letter-spacing:-0.04em;margin-bottom:18px;}
+.h-title .hl{background:linear-gradient(135deg,#fff 0%,#00a0dc 50%,#0077b5 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.h-sub{font-size:17px;color:var(--text-dim);line-height:1.7;margin-bottom:32px;}
+.h-crm-row{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
+.crm-pill{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:30px;font-size:12px;font-weight:700;border:1px solid;transition:all 0.2s;}
+.crm-pill:hover{transform:translateY(-2px);}
+.crm-sf{background:rgba(0,161,224,0.1);border-color:rgba(0,161,224,0.3);color:#00a1e0;}
+.crm-hs{background:rgba(255,122,0,0.1);border-color:rgba(255,122,0,0.3);color:#ff7a00;}
+.crm-zo{background:rgba(225,34,27,0.1);border-color:rgba(225,34,27,0.3);color:#e1221b;}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-li{background:linear-gradient(135deg,#0077b5,#00a0dc);color:white;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:700;box-shadow:0 4px 24px rgba(0,119,181,0.4);transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-li:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(0,160,220,0.5);}
+.btn-li-ghost{background:rgba(255,255,255,0.06);color:white;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,0.15);transition:all 0.25s;display:inline-flex;align-items:center;gap:8px;}
+.btn-li-ghost:hover{background:rgba(255,255,255,0.11);}
+
+/* Animated popup mockup */
+.popup-mockup{position:relative;display:flex;align-items:center;justify-content:center;}
+.pm-card{
+  width:380px;background:rgba(255,255,255,0.97);border-radius:16px;
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(0,160,220,0.3),0 0 60px rgba(0,119,181,0.2);
+  animation:floatCard 5s ease-in-out infinite;
+  position:relative;z-index:2;
+}
+@keyframes floatCard{0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-14px) rotate(0.5deg);}}
+.pm-header{background:linear-gradient(135deg,#005f92,#0077b5 40%,#00a0dc);padding:10px 14px 0;}
+.pm-header-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.pm-logo{width:32px;height:32px;border-radius:8px;background:white;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;background:white;}
+.pm-logo-text{background:linear-gradient(135deg,#0077b5,#00a0dc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pm-brand{font-size:14px;font-weight:800;color:white;}
+.pm-chip{margin-left:auto;background:rgba(34,197,94,0.25);border:1px solid rgba(34,197,94,0.4);color:#bbf7d0;border-radius:20px;padding:2px 8px;font-size:9px;font-weight:700;display:flex;align-items:center;gap:4px;}
+.pm-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;}
+.pm-tabs{display:flex;}
+.pm-tab{flex:1;text-align:center;padding:7px 2px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.55);border-bottom:2px solid transparent;}
+.pm-tab.a{color:white;border-bottom-color:white;}
+.pm-body{padding:12px 14px;background:white;}
+.pm-profile{background:#f8fafc;border:1px solid #e2e8f0;border-top:3px solid #0077b5;border-radius:10px;padding:10px;margin-bottom:10px;}
+.pm-profile-row{display:flex;gap:9px;align-items:flex-start;}
+.pm-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0077b5,#00a0dc);color:white;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pm-name{font-size:13px;font-weight:700;color:#1a1a1a;}
+.pm-role{font-size:11px;color:#555;margin-top:1px;}
+.pm-chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:4px;}
+.pm-chip2{background:#f1f5f9;border:1px solid #d1d5db;border-radius:4px;padding:1px 5px;font-size:9px;color:#6b7280;}
+.pm-badge{display:inline-flex;align-items:center;gap:3px;background:#f0fdf4;color:#15803d;border:1px solid #86efac;border-radius:8px;padding:2px 7px;font-size:9px;font-weight:700;margin-top:5px;}
+.pm-rtt{display:flex;background:#f1f5f9;border:1px solid #d1d5db;border-radius:7px;overflow:hidden;margin-bottom:9px;}
+.pm-rtt-btn{flex:1;padding:6px;border:none;background:transparent;font-size:10px;font-weight:600;color:#6b7280;}
+.pm-rtt-btn.a{background:linear-gradient(135deg,#0077b5,#00a0dc);color:white;}
+.pm-field{margin-bottom:6px;}
+.pm-flabel{font-size:9px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:2px;}
+.pm-finput{width:100%;padding:5px 8px;border:1px solid #e2e8f0;border-radius:5px;font-size:11px;color:#374151;background:#f8fafc;}
+.pm-score{display:inline-flex;align-items:center;gap:4px;background:#dcfce7;color:#15803d;border-radius:5px;padding:2px 6px;font-size:10px;font-weight:700;margin-top:2px;}
+.pm-btns{display:flex;gap:5px;margin-top:10px;}
+.pm-btn{flex:1;padding:7px;border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;}
+.pm-btn.extract{background:#f1f5f9;color:#374151;border:1px solid #d1d5db;}
+.pm-btn.enrich{background:linear-gradient(135deg,#7c3aed,#a855f7);color:white;}
+.pm-btn.save{background:linear-gradient(135deg,#22c55e,#16a34a);color:white;flex:1.5;}
+
+/* Floating elements */
+.float-badge{
+  position:absolute;background:white;border-radius:12px;padding:10px 14px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.35);
+  font-size:12px;font-weight:700;color:#1a1a1a;
+  display:flex;align-items:center;gap:8px;
+  animation:floatBadge ease-in-out infinite;
+}
+@keyframes floatBadge{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.fb-icon{font-size:20px;}
+.fb-label{font-size:10px;color:#6b7280;font-weight:400;}
+
+/* FEATURES */
+section.feat{position:relative;z-index:1;padding:100px 48px;}
+.feat-inner{max-width:1200px;margin:0 auto;}
+.s-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(0,119,181,0.12);border:1px solid rgba(0,160,220,0.25);color:var(--accent);border-radius:30px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:14px;}
+.s-title{font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:12px;}
+.s-sub{font-size:16px;color:var(--text-dim);line-height:1.7;max-width:560px;margin-bottom:50px;}
+
+/* Feature bento grid */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:20px;}
+.bcard{background:rgba(255,255,255,0.03);border:1px solid rgba(0,160,220,0.12);border-radius:18px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden;}
+.bcard:hover{background:rgba(0,119,181,0.07);border-color:rgba(0,160,220,0.35);transform:translateY(-4px);}
+.bcard.wide{grid-column:span 2;}
+.bcard.tall{grid-row:span 2;}
+.bcard-icon{font-size:32px;margin-bottom:14px;display:block;}
+.bcard-title{font-size:18px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em;}
+.bcard-desc{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.bcard-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:12px;}
+.bcard-list li{font-size:13px;color:var(--text-dim);display:flex;align-items:center;gap:8px;}
+.bcard-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.bcard-highlight{
+  position:absolute;top:0;right:0;
+  background:linear-gradient(135deg,rgba(0,160,220,0.15),transparent);
+  width:60%;height:60%;pointer-events:none;border-radius:0 18px 0 100%;
+}
+
+/* CRM logos strip */
+.crm-section{position:relative;z-index:1;padding:60px 48px;}
+.crm-inner{max-width:1200px;margin:0 auto;}
+.crm-logos{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;}
+.crm-logo-card{
+  flex:1;min-width:160px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;padding:24px 20px;text-align:center;
+  transition:all 0.3s;
+}
+.crm-logo-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18);transform:translateY(-4px);}
+.crm-logo-icon{font-size:36px;margin-bottom:10px;}
+.crm-logo-name{font-size:15px;font-weight:700;margin-bottom:4px;}
+.crm-logo-status{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
+.crm-logo-status.live{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);}
+.crm-logo-status.soon{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1);}
+
+/* ENRICH SECTION */
+.enrich-section{position:relative;z-index:1;padding:80px 48px;background:rgba(0,10,30,0.4);}
+.enrich-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.enrich-providers{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+.ep-card{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
+  border-radius:12px;padding:18px;display:flex;align-items:center;gap:14px;
+  transition:all 0.25s;
+}
+.ep-card:hover{background:rgba(0,119,181,0.08);border-color:rgba(0,160,220,0.3);transform:translateX(6px);}
+.ep-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.ep-name{font-size:14px;font-weight:700;margin-bottom:3px;}
+.ep-desc{font-size:12px;color:var(--text-dim);}
+.ep-badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;flex-shrink:0;}
+.ep-free{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3);}
+.ep-paid{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3);}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid rgba(0,160,220,0.1);background:rgba(0,12,30,0.5);}
+.f-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.f-links{display:flex;gap:20px;}
+.f-link{color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.f-link:hover{color:var(--cyan);}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.65s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s;}.rd2{transition-delay:0.2s;}.rd3{transition-delay:0.3s;}.rd4{transition-delay:0.4s;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:rgba(0,160,220,0.3);border-radius:3px;}
+@media(max-width:900px){nav{padding:0 16px;}.hero{padding:86px 16px 60px;}.hero-inner{grid-template-columns:1fr;}.pm-card{width:300px;}section.feat,.crm-section,.enrich-section{padding:60px 16px;}.bento{grid-template-columns:1fr;}.bcard.wide{grid-column:span 1;}.enrich-inner{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+<div class="particles" id="pts"></div>
+
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <div class="n-links">
+    <a href="index.html" class="n-link">← Home</a>
+    <a href="linkedin.html" class="n-link active">LinkedBridge</a>
+    <a href="boltforce.html" class="n-link">BoltForce</a>
+    <a href="gmail.html" class="n-link">GmailSync</a>
+    <a href="#install" class="n-cta">Install Free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="h-badge"><span class="h-dot"></span>LinkedIn Chrome Extension</div>
+      <h1 class="h-title"><span class="hl">LinkedBridge Pro</span><br>LinkedIn → Your CRM</h1>
+      <p class="h-sub">Extract any LinkedIn profile or company page directly into Salesforce, HubSpot, or Zoho — with 30+ fields, lead scoring, enrichment, and bulk queueing. In one click.</p>
+      <div class="h-crm-row">
+        <div class="crm-pill crm-sf">☁️ Salesforce</div>
+        <div class="crm-pill crm-hs">🟠 HubSpot</div>
+        <div class="crm-pill crm-zo">🔴 Zoho CRM</div>
+        <div class="crm-pill" style="border-color:rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);">+ Pipedrive (soon)</div>
+      </div>
+      <div class="h-btns">
+        <a href="#install" class="btn-li">Install Free →</a>
+        <a href="#features" class="btn-li-ghost">See All Features</a>
+      </div>
+    </div>
+    <div class="popup-mockup">
+      <!-- Floating badge: saved! -->
+      <div class="float-badge" style="top:-20px;right:-10px;animation-duration:4.5s;animation-delay:0s;">
+        <div class="fb-icon">✅</div>
+        <div><div style="font-size:12px;font-weight:700;">Saved to Salesforce</div><div class="fb-label">Sarah Chen · VP Engineering</div></div>
+      </div>
+      <!-- Floating badge: score -->
+      <div class="float-badge" style="bottom:10px;left:-30px;animation-duration:5.5s;animation-delay:1s;">
+        <div class="fb-icon">🎯</div>
+        <div><div style="font-size:12px;font-weight:700;">Lead Score: 92</div><div class="fb-label">High priority · ICP match</div></div>
+      </div>
+
+      <div class="pm-card">
+        <div class="pm-header">
+          <div class="pm-header-top">
+            <div class="pm-logo"><span class="pm-logo-text" style="font-size:13px;font-weight:900;">S³</span></div>
+            <span class="pm-brand">SCube LinkedBridge</span>
+            <div class="pm-chip"><div class="pm-dot"></div>Connected</div>
+          </div>
+          <div class="pm-tabs">
+            <div class="pm-tab a">Individuals</div>
+            <div class="pm-tab">Account</div>
+            <div class="pm-tab">Queue <span style="background:#ef4444;color:white;border-radius:8px;font-size:8px;padding:1px 4px;margin-left:2px;">5</span></div>
+            <div class="pm-tab">History</div>
+            <div class="pm-tab">Settings</div>
+          </div>
+        </div>
+        <div class="pm-body">
+          <!-- Stepper done/active/pending -->
+          <div style="display:flex;align-items:center;margin-bottom:10px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:700;">✓</div>
+              <span style="font-size:8px;color:#22c55e;font-weight:700;text-transform:uppercase;">Extract</span>
+            </div>
+            <div style="flex:1;height:2px;background:linear-gradient(90deg,#22c55e,#16a34a);margin:0 4px 10px;"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#0077b5,#00a0dc);display:flex;align-items:center;justify-content:center;font-size:10px;color:white;font-weight:700;">2</div>
+              <span style="font-size:8px;color:#0077b5;font-weight:700;text-transform:uppercase;">Review</span>
+            </div>
+            <div style="flex:1;height:2px;background:#e2e8f0;margin:0 4px 10px;"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+              <div style="width:22px;height:22px;border-radius:50%;background:#f1f5f9;border:2px solid #d1d5db;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9ca3af;font-weight:700;">3</div>
+              <span style="font-size:8px;color:#9ca3af;font-weight:700;text-transform:uppercase;">Save</span>
+            </div>
+          </div>
+          <div class="pm-profile">
+            <div class="pm-profile-row">
+              <div class="pm-avatar">SC</div>
+              <div>
+                <div class="pm-name">Sarah Chen</div>
+                <div class="pm-role">VP of Engineering · Stripe</div>
+                <div class="pm-chips">
+                  <div class="pm-chip2">🏢 Stripe</div>
+                  <div class="pm-chip2">📍 SF, CA</div>
+                  <div class="pm-chip2">🔗 500+</div>
+                </div>
+                <div class="pm-badge">✓ High completeness · 88%</div>
+              </div>
+            </div>
+          </div>
+          <div class="pm-rtt">
+            <button class="pm-rtt-btn a">👤 Lead</button>
+            <button class="pm-rtt-btn">🤝 Contact</button>
+          </div>
+          <div class="pm-field"><div class="pm-flabel">Last Name *</div><input class="pm-finput" value="Chen" readonly/></div>
+          <div class="pm-field"><div class="pm-flabel">Company *</div><input class="pm-finput" value="Stripe" readonly/></div>
+          <div class="pm-field"><div class="pm-flabel">Email</div><input class="pm-finput" value="sarah.chen@stripe.com" readonly/></div>
+          <div class="pm-score">🎯 Lead Score: 92 · High</div>
+          <div class="pm-btns">
+            <button class="pm-btn extract">🔍 Extract</button>
+            <button class="pm-btn enrich">✨ Enrich</button>
+            <button class="pm-btn save">💾 Save to SF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="feat" id="features">
+  <div class="feat-inner">
+    <div class="s-badge reveal">✦ Features</div>
+    <h2 class="s-title reveal">Everything you need to fill<br>your CRM from LinkedIn</h2>
+    <p class="s-sub reveal">From a single profile to bulk search results — LinkedBridge handles every step of the LinkedIn-to-CRM workflow.</p>
+
+    <div class="bento">
+      <div class="bcard wide reveal">
+        <div class="bcard-highlight"></div>
+        <span class="bcard-icon">🎯</span>
+        <div class="bcard-title">Bulk Queue with Lead Scoring</div>
+        <div class="bcard-desc">Add profiles to a drag-and-drop queue as you browse. Each profile is automatically scored 0–100 based on title, industry, and data completeness. Batch-save the entire queue to Salesforce with one click.</div>
+        <ul class="bcard-list">
+          <li>Configurable keyword rules (VP/Director = high, Intern = low)</li>
+          <li>Notes and tags per item (ICP, warm, priority, met in person)</li>
+          <li>Bulk email enrichment across all queued profiles</li>
+          <li>Export queue to CSV before pushing to CRM</li>
+        </ul>
+      </div>
+      <div class="bcard reveal rd1">
+        <span class="bcard-icon">✨</span>
+        <div class="bcard-title">3-Provider Enrichment</div>
+        <div class="bcard-desc">Find verified emails and phone numbers via Hunter.io, Apollo.io, or Clearbit. Accept or discard each enriched field individually before saving.</div>
+      </div>
+      <div class="bcard reveal rd2">
+        <span class="bcard-icon">🔍</span>
+        <div class="bcard-title">Smart Duplicate Detection</div>
+        <div class="bcard-desc">Before saving, the extension queries your CRM for matching email or LinkedIn URL. Shows a side-by-side comparison so you can update the existing record instead.</div>
+      </div>
+      <div class="bcard reveal">
+        <span class="bcard-icon">📊</span>
+        <div class="bcard-title">Profile Completeness Scoring</div>
+        <div class="bcard-desc">Visual badge and progress ring show data quality before you save — so you know exactly what's missing.</div>
+      </div>
+      <div class="bcard wide reveal rd1">
+        <div class="bcard-highlight"></div>
+        <span class="bcard-icon">🚀</span>
+        <div class="bcard-title">Bulk Search & Post Scraping</div>
+        <div class="bcard-desc">On LinkedIn search results pages, scan all visible results and add them to your queue in one click. On posts and events, scrape everyone who reacted or RSVP'd — warm leads who already engaged with your content.</div>
+        <ul class="bcard-list">
+          <li>Search results: scan visible profiles → add all to queue</li>
+          <li>Post reactions: capture warm prospects who engaged</li>
+          <li>Event attendees: RSVP list → bulk queue → batch save</li>
+        </ul>
+      </div>
+      <div class="bcard reveal rd2">
+        <span class="bcard-icon">🏢</span>
+        <div class="bcard-title">Company Page → Account</div>
+        <div class="bcard-desc">Extract full company data including tech stack, funding, employees, specialties, and recent posts. Save or update a Salesforce Account instantly.</div>
+      </div>
+      <div class="bcard reveal">
+        <span class="bcard-icon">🗂️</span>
+        <div class="bcard-title">Custom Field Mapping</div>
+        <div class="bcard-desc">Map any LinkedIn field to any CRM field. Set character limits, enable/disable fields, and save different mapping profiles per CRM.</div>
+      </div>
+      <div class="bcard reveal rd1">
+        <span class="bcard-icon">📎</span>
+        <div class="bcard-title">Resume / CV Attachment</div>
+        <div class="bcard-desc">Attach a candidate's CV/resume directly to the Salesforce Lead record at save time — uploaded as a ContentVersion file.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRM SUPPORT -->
+<div class="crm-section">
+  <div class="crm-inner">
+    <div class="s-badge reveal">✦ Multi-CRM</div>
+    <h2 class="s-title reveal" style="max-width:600px;">One extension.<br>Every CRM you use.</h2>
+    <div class="crm-logos">
+      <div class="crm-logo-card reveal">
+        <div class="crm-logo-icon">☁️</div>
+        <div class="crm-logo-name">Salesforce</div>
+        <div>Leads · Contacts · Accounts · Campaigns</div>
+        <div class="crm-logo-status live" style="margin-top:8px;">✓ Live</div>
+      </div>
+      <div class="crm-logo-card reveal rd1">
+        <div class="crm-logo-icon">🟠</div>
+        <div class="crm-logo-name">HubSpot</div>
+        <div>Contacts · Companies · OAuth 2.0</div>
+        <div class="crm-logo-status live" style="margin-top:8px;">✓ Live</div>
+      </div>
+      <div class="crm-logo-card reveal rd2">
+        <div class="crm-logo-icon">🔴</div>
+        <div class="crm-logo-name">Zoho CRM</div>
+        <div>Leads · Contacts · Accounts</div>
+        <div class="crm-logo-status live" style="margin-top:8px;">✓ Live</div>
+      </div>
+      <div class="crm-logo-card reveal rd3">
+        <div class="crm-logo-icon">🔵</div>
+        <div class="crm-logo-name">Pipedrive</div>
+        <div>Persons · Organizations · Deals</div>
+        <div class="crm-logo-status soon" style="margin-top:8px;">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENRICHMENT -->
+<div class="enrich-section" id="install">
+  <div class="enrich-inner">
+    <div>
+      <div class="s-badge reveal">✦ Data Enrichment</div>
+      <h2 class="s-title reveal">Find verified emails<br>for every prospect</h2>
+      <p style="font-size:16px;color:var(--text-dim);line-height:1.7;margin-bottom:24px;" class="reveal">Connect one enrichment provider and click "Enrich" on any profile to find their work email and phone number. Accept or discard field-by-field before saving to CRM.</p>
+      <a href="#" class="btn-li reveal">Install LinkedBridge Free →</a>
+    </div>
+    <div class="enrich-providers">
+      <div class="ep-card reveal">
+        <div class="ep-icon" style="background:rgba(234,67,53,0.12);border:1px solid rgba(234,67,53,0.25);">🎯</div>
+        <div><div class="ep-name">Hunter.io</div><div class="ep-desc">Email finder & domain search</div></div>
+        <div class="ep-badge ep-free">25 free/mo</div>
+      </div>
+      <div class="ep-card reveal rd1">
+        <div class="ep-icon" style="background:rgba(99,91,255,0.12);border:1px solid rgba(99,91,255,0.25);">🚀</div>
+        <div><div class="ep-name">Apollo.io</div><div class="ep-desc">275M+ contacts database</div></div>
+        <div class="ep-badge ep-free">50 free/mo</div>
+      </div>
+      <div class="ep-card reveal rd2">
+        <div class="ep-icon" style="background:rgba(0,119,181,0.12);border:1px solid rgba(0,160,220,0.25);">💎</div>
+        <div><div class="ep-name">Clearbit</div><div class="ep-desc">Person & company enrichment</div></div>
+        <div class="ep-badge ep-paid">Paid</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="n-cube" style="width:30px;height:30px;font-size:14px;">S</div>
+      <span style="font-size:17px;font-weight:800;">SCube</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">Home</a>
+      <a href="boltforce.html" class="f-link">BoltForce</a>
+      <a href="gmail.html" class="f-link">GmailSync</a>
+      <a href="https://scubedevelopmentteam.github.io/privacy/" class="f-link">Privacy</a>
+    </div>
+    <div class="f-copy">© 2026 SCube · LinkedBridge Pro</div>
+  </div>
+</footer>
+
+<script>
+const pts=document.getElementById('pts');
+for(let i=0;i<22;i++){const p=document.createElement('div');p.className='p';const s=Math.random()*3+1.5;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*18+12}s;animation-delay:${Math.random()*12}s;--d:${(Math.random()-0.5)*180}px;`;pts.appendChild(p);}
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

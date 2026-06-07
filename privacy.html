@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — SCube Extensions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#0176D3;--cyan:#00A1E0;--navy:#001226;
+  --white:#fff;--text-dim:rgba(255,255,255,0.65);--text-dimmer:rgba(255,255,255,0.4);
+  --border:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;line-height:1.7;}
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 10% 30%,rgba(1,118,211,0.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 10%,rgba(0,161,224,0.09) 0%,transparent 50%),
+             linear-gradient(135deg,#000c1e 0%,#001226 50%,#00183a 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,161,224,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,161,224,0.04) 1px,transparent 1px);
+  background-size:60px 60px;}
+
+/* NAV */
+nav{position:sticky;top:0;left:0;right:0;z-index:1000;height:64px;
+  display:flex;align-items:center;padding:0 48px;
+  background:rgba(0,12,30,0.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,161,224,0.12);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#0176D3,#00A1E0);
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;
+  box-shadow:0 0 16px rgba(0,161,224,0.35);}
+.n-name{font-size:19px;font-weight:800;}
+.n-name span{color:var(--cyan);}
+.n-back{margin-left:auto;color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;font-weight:500;padding:7px 14px;border-radius:7px;transition:all 0.2s;}
+.n-back:hover{color:white;background:rgba(255,255,255,0.07);}
+
+/* MAIN LAYOUT */
+.page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:60px 48px 100px;}
+
+/* HEADER */
+.page-header{margin-bottom:56px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.page-title{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-0.04em;line-height:1.1;margin-bottom:14px;}
+.page-title span{background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-meta{font-size:13px;color:var(--text-dimmer);display:flex;gap:24px;flex-wrap:wrap;}
+.page-meta strong{color:rgba(255,255,255,0.6);}
+
+/* TOC */
+.toc{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:24px 28px;margin-bottom:48px;}
+.toc-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--cyan);margin-bottom:14px;}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.toc-list a{color:var(--text-dim);text-decoration:none;font-size:14px;transition:color 0.15s;}
+.toc-list a:hover{color:white;}
+.toc-list li{display:flex;align-items:center;gap:8px;}
+.toc-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(0,161,224,0.5);flex-shrink:0;}
+
+/* SECTIONS */
+.section{margin-bottom:52px;}
+.section-anchor{position:relative;top:-80px;visibility:hidden;}
+h2.s-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+h2.s-title .s-num{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#0176D3,#00A1E0);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;}
+.section-rule{height:1px;background:var(--border);margin-bottom:24px;}
+p{font-size:15px;color:var(--text-dim);margin-bottom:16px;}
+p:last-child{margin-bottom:0;}
+
+/* EXTENSION BLOCKS */
+.ext-block{background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;}
+.ext-header{padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);}
+.ext-icon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ext-name{font-size:17px;font-weight:800;}
+.ext-version{font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;margin-left:auto;flex-shrink:0;}
+.ext-body{padding:20px 24px;}
+.ext-body p{font-size:14px;color:var(--text-dim);margin-bottom:14px;}
+
+/* PERMISSION TABLE */
+.perm-table{width:100%;border-collapse:collapse;margin-top:10px;margin-bottom:16px;font-size:13px;}
+.perm-table th{text-align:left;padding:8px 12px;background:rgba(0,161,224,0.08);color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+.perm-table th:first-child{border-radius:8px 0 0 8px;}
+.perm-table th:last-child{border-radius:0 8px 8px 0;}
+.perm-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;}
+.perm-table tr:last-child td{border-bottom:none;}
+.perm-name{font-family:monospace;color:var(--cyan);font-size:12px;white-space:nowrap;}
+.perm-why{color:var(--text-dim);}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+.data-table th{text-align:left;padding:8px 12px;background:rgba(0,161,224,0.08);color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+.data-table th:first-child{border-radius:8px 0 0 8px;}
+.data-table th:last-child{border-radius:0 8px 8px 0;}
+.data-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;color:var(--text-dim);}
+.data-table tr:last-child td{border-bottom:none;}
+.tag{display:inline-block;padding:1px 7px;border-radius:20px;font-size:10px;font-weight:700;}
+.tag-no{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.25);}
+.tag-local{background:rgba(34,197,94,0.12);color:#4ade80;border:1px solid rgba(34,197,94,0.25);}
+.tag-crm{background:rgba(0,161,224,0.12);color:#38bdf8;border:1px solid rgba(0,161,224,0.25);}
+.tag-byok{background:rgba(168,85,247,0.12);color:#c084fc;border:1px solid rgba(168,85,247,0.25);}
+
+/* CALLOUT */
+.callout{border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:12px;align-items:flex-start;}
+.callout-info{background:rgba(0,161,224,0.08);border:1px solid rgba(0,161,224,0.2);}
+.callout-warn{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);}
+.callout-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.callout-text{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.callout-text strong{color:white;}
+
+/* LIST */
+ul.policy-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:14px 0;}
+ul.policy-list li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:9px;}
+ul.policy-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0;margin-top:7px;}
+
+/* CONTACT */
+.contact-card{background:rgba(1,118,211,0.08);border:1px solid rgba(0,161,224,0.2);border-radius:14px;padding:28px;text-align:center;}
+.contact-card h3{font-size:20px;font-weight:800;margin-bottom:8px;}
+.contact-card p{font-size:14px;color:var(--text-dim);margin-bottom:20px;}
+.contact-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0176D3,#00A1E0);color:white;text-decoration:none;padding:11px 24px;border-radius:9px;font-size:14px;font-weight:700;box-shadow:0 4px 20px rgba(0,161,224,0.3);}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid rgba(0,161,224,0.1);background:rgba(0,12,30,0.5);}
+.f-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.f-links{display:flex;gap:20px;}
+.f-link{color:rgba(255,255,255,0.4);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.f-link:hover{color:var(--cyan);}
+
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:rgba(0,161,224,0.3);border-radius:3px;}
+@media(max-width:700px){nav{padding:0 16px;}.page{padding:40px 16px 80px;}footer{padding:24px 16px;}}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <a href="index.html" class="n-back">← Back to Home</a>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <h1 class="page-title"><span>Privacy Policy</span></h1>
+    <div class="page-meta">
+      <span><strong>Effective date:</strong> June 8, 2026</span>
+      <span><strong>Last updated:</strong> June 8, 2026</span>
+      <span><strong>Publisher:</strong> SCube (scubedevelopmentteam@gmail.com)</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#overview">1. Overview &amp; Our Core Promise</a></li>
+      <li><a href="#linkedbridge">2. SCube LinkedBridge Pro — Privacy Details</a></li>
+      <li><a href="#boltforce">3. SCube BoltForce — Privacy Details</a></li>
+      <li><a href="#gmailsync">4. SCube Gmail SyncForce — Privacy Details</a></li>
+      <li><a href="#data-sharing">5. Data Sharing &amp; Third Parties</a></li>
+      <li><a href="#storage">6. Data Storage &amp; Retention</a></li>
+      <li><a href="#security">7. Security</a></li>
+      <li><a href="#children">8. Children's Privacy</a></li>
+      <li><a href="#changes">9. Changes to This Policy</a></li>
+      <li><a href="#contact">10. Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- 1. OVERVIEW -->
+  <div class="section">
+    <span class="section-anchor" id="overview"></span>
+    <h2 class="s-title"><div class="s-num">1</div>Overview &amp; Our Core Promise</h2>
+    <div class="section-rule"></div>
+    <p>SCube builds Chrome extensions that connect LinkedIn, Gmail, and Salesforce to streamline sales and development workflows. This policy covers all three published extensions:</p>
+    <ul class="policy-list">
+      <li><strong>SCube LinkedBridge Pro</strong> (v3.0.0) — LinkedIn to CRM data capture</li>
+      <li><strong>SCube BoltForce</strong> (v2.0.2) — Salesforce admin &amp; dev toolkit</li>
+      <li><strong>SCube Gmail SyncForce</strong> (v1.6.0) — Gmail to Salesforce email logging</li>
+    </ul>
+    <div class="callout callout-info">
+      <div class="callout-icon">🔒</div>
+      <div class="callout-text"><strong>We do not operate a backend server.</strong> None of your Salesforce data, LinkedIn profile data, Gmail content, OAuth tokens, or API keys are ever sent to or stored on SCube servers. All data flows directly between your browser and the services you configure (Salesforce, HubSpot, LinkedIn, etc.).</div>
+    </div>
+    <p>We do not sell, rent, lease, or otherwise share your personal data with any third party for marketing or advertising purposes.</p>
+  </div>
+
+  <!-- 2. LINKEDBRIDGE -->
+  <div class="section">
+    <span class="section-anchor" id="linkedbridge"></span>
+    <h2 class="s-title"><div class="s-num">2</div>SCube LinkedBridge Pro</h2>
+    <div class="section-rule"></div>
+
+    <div class="ext-block">
+      <div class="ext-header">
+        <div class="ext-icon" style="background:rgba(0,119,181,0.15);border:1px solid rgba(0,119,181,0.3);">🔗</div>
+        <div>
+          <div class="ext-name">SCube LinkedBridge Pro</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">Manifest V3 · Chrome Extension</div>
+        </div>
+        <div class="ext-version" style="background:rgba(0,119,181,0.15);color:#38bdf8;border:1px solid rgba(0,119,181,0.25);">v3.0.0</div>
+      </div>
+      <div class="ext-body">
+
+        <p><strong>What this extension does:</strong> Reads publicly visible data from LinkedIn profile pages, company pages, search results, posts, and events, then saves that data as records (Leads, Contacts, Accounts) in the CRM you connect.</p>
+
+        <p><strong>Data accessed on LinkedIn:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Data field</th><th>Source</th><th>Sent to SCube?</th><th>Stored where?</th></tr></thead>
+          <tbody>
+            <tr><td>Full name, headline, title, company</td><td>LinkedIn profile DOM</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Your CRM only</span></td></tr>
+            <tr><td>Location, industry, profile photo URL</td><td>LinkedIn profile DOM</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Your CRM only</span></td></tr>
+            <tr><td>Connection count, LinkedIn profile URL</td><td>LinkedIn profile DOM</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Your CRM only</span></td></tr>
+            <tr><td>Company size, founding year, specialties</td><td>LinkedIn company DOM</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Your CRM only</span></td></tr>
+            <tr><td>Post reaction profiles (bulk mode)</td><td>LinkedIn feed DOM</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Your CRM only</span></td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Chrome permissions used and why:</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">activeTab</td><td class="perm-why">Read the currently open LinkedIn page to extract profile/company data</td></tr>
+            <tr><td class="perm-name">scripting</td><td class="perm-why">Inject content scripts on LinkedIn pages to read the DOM</td></tr>
+            <tr><td class="perm-name">storage</td><td class="perm-why">Store your CRM connection settings, OAuth tokens, field mappings, lead scoring rules, and bulk queue — locally in your browser only</td></tr>
+            <tr><td class="perm-name">identity</td><td class="perm-why">Launch OAuth 2.0 authentication flow for Salesforce, HubSpot, Zoho, Dynamics 365, and Pipedrive</td></tr>
+            <tr><td class="perm-name">alarms</td><td class="perm-why">Schedule periodic token refresh to keep CRM connections alive without user action</td></tr>
+            <tr><td class="perm-name">optional: &lt;all_urls&gt;</td><td class="perm-why">Only requested if you enable enrichment via Hunter.io, Apollo.io, or Clearbit for email lookup; not requested by default</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Host permissions (network access):</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Domain</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">linkedin.com</td><td class="perm-why">Read profile, company, search, and post pages</td></tr>
+            <tr><td class="perm-name">*.salesforce.com, *.force.com</td><td class="perm-why">Create/update Leads, Contacts, Accounts, Campaigns in Salesforce</td></tr>
+            <tr><td class="perm-name">api.hubapi.com, api.hubspot.com</td><td class="perm-why">Create/update Contacts and Companies in HubSpot (if connected)</td></tr>
+            <tr><td class="perm-name">*.zohoapis.com (all regions)</td><td class="perm-why">Create/update Leads, Contacts, Accounts in Zoho CRM (if connected)</td></tr>
+            <tr><td class="perm-name">login.microsoftonline.com, *.dynamics.com</td><td class="perm-why">OAuth and record creation for Microsoft Dynamics 365 (if connected)</td></tr>
+            <tr><td class="perm-name">api.pipedrive.com</td><td class="perm-why">Create Persons and Organizations in Pipedrive (if connected)</td></tr>
+            <tr><td class="perm-name">api.hunter.io</td><td class="perm-why">Email enrichment via Hunter.io — only called when you click "Enrich" and have configured a Hunter API key</td></tr>
+            <tr><td class="perm-name">api.apollo.io</td><td class="perm-why">Email enrichment via Apollo.io — only called when you click "Enrich" and have configured an Apollo API key</td></tr>
+            <tr><td class="perm-name">prospecting.clearbit.com</td><td class="perm-why">Email enrichment via Clearbit — only called when you click "Enrich" and have configured a Clearbit API key</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-text"><strong>Enrichment providers are third parties.</strong> When you configure Hunter.io, Apollo.io, or Clearbit and click "Enrich", the profile name or domain is sent directly to that provider's API using your own API key. Each provider has their own privacy policy — we recommend reviewing them before use. SCube does not intercept or log these API calls.</div>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-text"><strong>LinkedIn Terms of Service:</strong> This extension reads publicly visible profile information displayed to logged-in LinkedIn members. It does not bypass LinkedIn's authentication, scrape at scale via automation, or access private/restricted data. You are responsible for ensuring your use complies with LinkedIn's User Agreement.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. BOLTFORCE -->
+  <div class="section">
+    <span class="section-anchor" id="boltforce"></span>
+    <h2 class="s-title"><div class="s-num">3</div>SCube BoltForce</h2>
+    <div class="section-rule"></div>
+
+    <div class="ext-block">
+      <div class="ext-header">
+        <div class="ext-icon" style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.2);">⚡</div>
+        <div>
+          <div class="ext-name">SCube BoltForce</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">Manifest V3 · Chrome Extension</div>
+        </div>
+        <div class="ext-version" style="background:rgba(245,158,11,0.1);color:#fbbf24;border:1px solid rgba(245,158,11,0.2);">v2.0.2</div>
+      </div>
+      <div class="ext-body">
+
+        <p><strong>What this extension does:</strong> Embeds a developer and admin toolkit directly into your Salesforce org UI — SOQL editor, permission analyser, metadata explorer, code coverage viewer, REST API tester, org switcher, and debug log viewer. All data remains within your own Salesforce org.</p>
+
+        <p><strong>Chrome permissions used and why:</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">activeTab</td><td class="perm-why">Interact with the currently active Salesforce org tab</td></tr>
+            <tr><td class="perm-name">storage</td><td class="perm-why">Save your connected org list, SOQL query history, saved queries, and user preferences locally in your browser</td></tr>
+            <tr><td class="perm-name">cookies</td><td class="perm-why">Read the Salesforce session cookie (<code>sid</code>) from the active org tab to make authenticated REST API calls on your behalf — the cookie is never sent outside the Salesforce domain</td></tr>
+            <tr><td class="perm-name">scripting</td><td class="perm-why">Inject overlay UI (SOQL editor, field metadata overlays, permission audit panel, component locator, etc.) into Salesforce pages</td></tr>
+            <tr><td class="perm-name">contextMenus</td><td class="perm-why">Add right-click context menu shortcuts for quick SOQL runs and record lookups inside Salesforce pages</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Host permissions:</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Domain</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">*.salesforce.com</td><td class="perm-why">All Salesforce Lightning and Classic org pages (login, setup, app)</td></tr>
+            <tr><td class="perm-name">*.force.com</td><td class="perm-why">Salesforce custom domains (my.salesforce.com / community / Experience Cloud)</td></tr>
+            <tr><td class="perm-name">*.cloudforce.com</td><td class="perm-why">Salesforce infrastructure domains used by some orgs</td></tr>
+            <tr><td class="perm-name">*.visualforce.com</td><td class="perm-why">Visualforce page domains used in Salesforce Classic and embedded components</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Data accessed:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Data</th><th>Sent to SCube?</th><th>Stored where?</th></tr></thead>
+          <tbody>
+            <tr><td>Salesforce session token (sid cookie)</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-local">Browser memory only (not persisted)</span></td></tr>
+            <tr><td>SOQL query results (records, fields)</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-local">Displayed in-page, not stored</span></td></tr>
+            <tr><td>Metadata (objects, fields, permissions)</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-local">Cached locally for performance</span></td></tr>
+            <tr><td>Saved SOQL queries &amp; org list</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-local">chrome.storage.local (your device)</span></td></tr>
+            <tr><td>Code coverage data, debug logs</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-local">Read from SF, displayed in-page only</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">🔑</div>
+          <div class="callout-text"><strong>Session token use:</strong> BoltForce reads the Salesforce <code>sid</code> session cookie solely to make REST API calls to <em>your own Salesforce org</em>. The token is held in browser memory for the duration of your session and is never transmitted to any external server, logged, or persisted to disk.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. GMAIL SYNCFORCE -->
+  <div class="section">
+    <span class="section-anchor" id="gmailsync"></span>
+    <h2 class="s-title"><div class="s-num">4</div>SCube Gmail SyncForce</h2>
+    <div class="section-rule"></div>
+
+    <div class="ext-block">
+      <div class="ext-header">
+        <div class="ext-icon" style="background:rgba(52,168,83,0.12);border:1px solid rgba(52,168,83,0.25);">📧</div>
+        <div>
+          <div class="ext-name">SCube Gmail SyncForce</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);">Manifest V3 · Chrome Extension</div>
+        </div>
+        <div class="ext-version" style="background:rgba(52,168,83,0.1);color:#4ade80;border:1px solid rgba(52,168,83,0.25);">v1.6.0</div>
+      </div>
+      <div class="ext-body">
+
+        <p><strong>What this extension does:</strong> Injects a sidebar into Gmail that lets you log email threads as Salesforce Tasks, match senders to Leads/Contacts, summarise threads using AI, inline-edit Salesforce records, schedule emails with Send Later, and auto-log outgoing messages.</p>
+
+        <p><strong>Chrome permissions used and why:</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">storage</td><td class="perm-why">Store your Salesforce OAuth tokens, API keys (Consumer Key/Secret), AI provider API keys, settings (auto-log, smart-mute rules, send-later queue) — all locally in your browser only</td></tr>
+            <tr><td class="perm-name">identity</td><td class="perm-why">Launch Salesforce OAuth 2.0 authentication flow via chrome.identity.launchWebAuthFlow</td></tr>
+            <tr><td class="perm-name">tabs</td><td class="perm-why">Detect active Gmail tab to coordinate content script messaging; open linked Salesforce records in a new tab</td></tr>
+            <tr><td class="perm-name">alarms</td><td class="perm-why">Power the Send Later feature — fire a scheduled alarm at the time you chose, then reopen and send the saved draft</td></tr>
+            <tr><td class="perm-name">notifications</td><td class="perm-why">Show a brief desktop notification after a successful auto-log or when a Send Later draft fires</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Host permissions:</strong></p>
+        <table class="perm-table">
+          <thead><tr><th>Domain</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td class="perm-name">mail.google.com</td><td class="perm-why">Inject the SyncForce sidebar and "Log to Salesforce" button into Gmail threads; read sender email addresses, subject lines, and body text of threads you choose to log</td></tr>
+            <tr><td class="perm-name">*.salesforce.com, *.force.com</td><td class="perm-why">Query Leads/Contacts by email, create Tasks, post Chatter messages, upload file attachments to ContentDocument, and inline-edit records</td></tr>
+            <tr><td class="perm-name">api.anthropic.com</td><td class="perm-why">AI thread summarisation using Claude — only called if you provide your own Anthropic API key; your email thread text is sent to Anthropic per their Privacy Policy</td></tr>
+            <tr><td class="perm-name">api.openai.com</td><td class="perm-why">AI thread summarisation using OpenAI — only called if you provide your own OpenAI API key; your email thread text is sent to OpenAI per their Privacy Policy</td></tr>
+            <tr><td class="perm-name">generativelanguage.googleapis.com</td><td class="perm-why">AI thread summarisation using Google Gemini — only called if you provide your own Google AI API key</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Email data accessed:</strong></p>
+        <table class="data-table">
+          <thead><tr><th>Data</th><th>When accessed</th><th>Sent to SCube?</th><th>Sent where?</th></tr></thead>
+          <tbody>
+            <tr><td>Sender &amp; recipient email addresses</td><td>When you open a thread with the sidebar</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Salesforce only (to match records)</span></td></tr>
+            <tr><td>Email subject line</td><td>When logging a thread</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Salesforce Task Subject field</span></td></tr>
+            <tr><td>Email body text</td><td>Only when AI Summary is triggered or when logging Comments</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Salesforce Task Comments</span> / <span class="tag tag-byok">AI provider (BYOK)</span></td></tr>
+            <tr><td>File attachments</td><td>Only if you click "Attach to Salesforce"</td><td><span class="tag tag-no">Never</span></td><td><span class="tag tag-crm">Salesforce ContentDocument</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-warn">
+          <div class="callout-icon">🤖</div>
+          <div class="callout-text"><strong>AI Summarisation is Bring Your Own Key (BYOK).</strong> If you enable AI summarisation, you supply your own API key for Anthropic Claude, OpenAI, or Google Gemini. The email thread text is sent directly from your browser to that AI provider's API — SCube does not proxy, store, or inspect these requests. Each AI provider's privacy policy governs how they handle the text. You can disable AI summarisation at any time in Settings.</div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">🔐</div>
+          <div class="callout-text"><strong>Credentials storage:</strong> Your Salesforce Consumer Key, Consumer Secret, OAuth access/refresh tokens, and any AI provider API keys are stored exclusively in <code>chrome.storage.local</code> on your local device. They are never transmitted to SCube or any server other than the respective authentication endpoints.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. DATA SHARING -->
+  <div class="section">
+    <span class="section-anchor" id="data-sharing"></span>
+    <h2 class="s-title"><div class="s-num">5</div>Data Sharing &amp; Third Parties</h2>
+    <div class="section-rule"></div>
+    <p>SCube does not sell, trade, or rent your personal information to third parties. The only data flows that occur are those you explicitly configure:</p>
+    <ul class="policy-list">
+      <li><strong>Your CRM</strong> (Salesforce, HubSpot, Zoho, Dynamics 365, Pipedrive) — receives only the data you choose to save by clicking Save/Log in the extension.</li>
+      <li><strong>Email enrichment providers</strong> (Hunter.io, Apollo.io, Clearbit) — receive a name or domain only when you click "Enrich" and have configured that provider's API key. These providers have their own privacy policies.</li>
+      <li><strong>AI providers</strong> (Anthropic, OpenAI, Google) — receive email thread text only if you enable AI summarisation and provide your own API key. These providers have their own privacy policies.</li>
+      <li><strong>LinkedIn</strong> — the extension reads data from LinkedIn pages you navigate to. No data is sent back to LinkedIn by the extension.</li>
+    </ul>
+    <p>We do not use analytics SDKs, advertising networks, or telemetry of any kind inside our extensions.</p>
+  </div>
+
+  <!-- 6. STORAGE -->
+  <div class="section">
+    <span class="section-anchor" id="storage"></span>
+    <h2 class="s-title"><div class="s-num">6</div>Data Storage &amp; Retention</h2>
+    <div class="section-rule"></div>
+    <p>All settings, tokens, API keys, and cached data are stored in <code>chrome.storage.local</code> on your local device. This data is:</p>
+    <ul class="policy-list">
+      <li>Never uploaded to SCube servers</li>
+      <li>Accessible only to the extension itself and to you</li>
+      <li>Deleted automatically when you uninstall the extension from Chrome</li>
+      <li>Deletable at any time via the extension Settings panel → "Clear All Data"</li>
+    </ul>
+    <p>We do not control data you have saved to your CRM. For deletion of records saved to Salesforce, HubSpot, Zoho, Dynamics 365, or Pipedrive, please manage those records within your CRM platform.</p>
+  </div>
+
+  <!-- 7. SECURITY -->
+  <div class="section">
+    <span class="section-anchor" id="security"></span>
+    <h2 class="s-title"><div class="s-num">7</div>Security</h2>
+    <div class="section-rule"></div>
+    <p>All extensions use OAuth 2.0 for CRM authentication — your CRM password is never seen or stored by the extension. Access tokens are stored locally and transmitted only over HTTPS to the respective CRM APIs. All three extensions are built on Chrome Manifest V3, which enforces stricter security policies including no remote code execution.</p>
+    <p>If you discover a security vulnerability in any SCube extension, please disclose it responsibly by emailing <a href="mailto:scubedevelopmentteam@gmail.com" style="color:var(--cyan);">scubedevelopmentteam@gmail.com</a>.</p>
+  </div>
+
+  <!-- 8. CHILDREN -->
+  <div class="section">
+    <span class="section-anchor" id="children"></span>
+    <h2 class="s-title"><div class="s-num">8</div>Children's Privacy</h2>
+    <div class="section-rule"></div>
+    <p>Our extensions are designed for use by business professionals in sales, administration, and software development roles. They are not directed at or intended for use by children under the age of 13. We do not knowingly collect any information from children.</p>
+  </div>
+
+  <!-- 9. CHANGES -->
+  <div class="section">
+    <span class="section-anchor" id="changes"></span>
+    <h2 class="s-title"><div class="s-num">9</div>Changes to This Policy</h2>
+    <div class="section-rule"></div>
+    <p>We may update this Privacy Policy when we release new extension versions or add new features. When we make material changes, we will update the "Last updated" date at the top of this page. The current version is always available at this URL.</p>
+    <p>Continued use of the extensions after changes are posted constitutes your acceptance of the updated policy.</p>
+  </div>
+
+  <!-- 10. CONTACT -->
+  <div class="section">
+    <span class="section-anchor" id="contact"></span>
+    <h2 class="s-title"><div class="s-num">10</div>Contact Us</h2>
+    <div class="section-rule"></div>
+    <p>If you have any questions about this Privacy Policy, want to request deletion of data, or wish to report a concern, please contact us:</p>
+    <div class="contact-card">
+      <h3>SCube Development Team</h3>
+      <p>We typically respond within 2 business days.</p>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="contact-link">✉️ scubedevelopmentteam@gmail.com</a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="n-cube" style="width:30px;height:30px;font-size:13px;">S</div>
+      <span style="font-size:16px;font-weight:800;">SCube</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">Home</a>
+      <a href="linkedin.html" class="f-link">LinkedBridge</a>
+      <a href="boltforce.html" class="f-link">BoltForce</a>
+      <a href="gmail.html" class="f-link">GmailSync</a>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="f-link">Contact</a>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.3);">© 2026 SCube · Privacy Policy</div>
+  </div>
+</footer>
+
+</body>
+</html>

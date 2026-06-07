@@ -110,6 +110,25 @@ ul.policy-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin
 ul.policy-list li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:9px;}
 ul.policy-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0;margin-top:7px;}
 
+/* INDIVIDUAL POLICY CARDS */
+.policy-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
+.pc{border-radius:14px;padding:20px 20px 16px;text-decoration:none;transition:transform 0.18s,box-shadow 0.18s;display:flex;flex-direction:column;gap:8px;}
+.pc:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.35);}
+.pc-li{background:rgba(0,119,181,0.1);border:1px solid rgba(0,119,181,0.28);}
+.pc-li:hover{background:rgba(0,119,181,0.16);}
+.pc-bf{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);}
+.pc-bf:hover{background:rgba(245,158,11,0.14);}
+.pc-gm{background:rgba(52,168,83,0.08);border:1px solid rgba(52,168,83,0.25);}
+.pc-gm:hover{background:rgba(52,168,83,0.14);}
+.pc-icon{font-size:26px;line-height:1;}
+.pc-name{font-size:14px;font-weight:800;color:white;}
+.pc-ver{font-size:11px;color:rgba(255,255,255,0.4);}
+.pc-cta{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;margin-top:4px;}
+.pc-li .pc-cta{color:#38bdf8;}
+.pc-bf .pc-cta{color:#fbbf24;}
+.pc-gm .pc-cta{color:#4ade80;}
+@media(max-width:600px){.policy-cards{grid-template-columns:1fr;}}
+
 /* CONTACT */
 .contact-card{background:rgba(1,118,211,0.08);border:1px solid rgba(0,161,224,0.2);border-radius:14px;padding:28px;text-align:center;}
 .contact-card h3{font-size:20px;font-weight:800;margin-bottom:8px;}
@@ -149,6 +168,28 @@ footer{position:relative;z-index:1;padding:32px 48px;border-top:1px solid rgba(0
       <span><strong>Last updated:</strong> June 8, 2026</span>
       <span><strong>Publisher:</strong> SCube (scubedevelopmentteam@gmail.com)</span>
     </div>
+  </div>
+
+  <!-- INDIVIDUAL POLICY QUICK-LINKS -->
+  <div class="policy-cards">
+    <a href="privacy-linkedbridge.html" class="pc pc-li">
+      <div class="pc-icon">🔗</div>
+      <div class="pc-name">LinkedBridge Pro</div>
+      <div class="pc-ver">v3.0.0 · 5 CRMs · 4 content scripts</div>
+      <div class="pc-cta">Full privacy policy →</div>
+    </a>
+    <a href="privacy-boltforce.html" class="pc pc-bf">
+      <div class="pc-icon">⚡</div>
+      <div class="pc-name">BoltForce</div>
+      <div class="pc-ver">v2.0.2 · Salesforce dev toolkit</div>
+      <div class="pc-cta">Full privacy policy →</div>
+    </a>
+    <a href="privacy-gmail.html" class="pc pc-gm">
+      <div class="pc-icon">📧</div>
+      <div class="pc-name">Gmail SyncForce</div>
+      <div class="pc-ver">v1.6.0 · Gmail → Salesforce</div>
+      <div class="pc-cta">Full privacy policy →</div>
+    </a>
   </div>
 
   <!-- TOC -->

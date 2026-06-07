@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — SCube BoltForce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#f59e0b;--amber:#d97706;--bg:#0c0800;
+  --white:#fff;--text-dim:rgba(255,255,255,0.65);--border:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.7;}
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 10% 35%,rgba(245,158,11,0.1) 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 10%,rgba(217,119,6,0.07) 0%,transparent 50%),
+             linear-gradient(135deg,#080600 0%,#0c0800 50%,#0e0a00 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(245,158,11,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(245,158,11,0.03) 1px,transparent 1px);
+  background-size:60px 60px;}
+nav{position:sticky;top:0;z-index:1000;height:64px;display:flex;align-items:center;padding:0 48px;
+  background:rgba(8,6,0,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(245,158,11,0.1);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#d97706,#f59e0b);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;box-shadow:0 0 14px rgba(245,158,11,0.3);}
+.n-name{font-size:18px;font-weight:800;}.n-name span{color:var(--gold);}
+.n-links{display:flex;gap:6px;margin-left:auto;align-items:center;}
+.n-link{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:6px;transition:all 0.2s;}
+.n-link:hover{color:white;background:rgba(255,255,255,0.06);}
+.n-home{background:rgba(245,158,11,0.12);color:var(--gold);border:1px solid rgba(245,158,11,0.25);text-decoration:none;font-size:13px;font-weight:700;padding:7px 16px;border-radius:8px;margin-left:4px;transition:all 0.2s;}
+.n-home:hover{background:rgba(245,158,11,0.2);}
+.page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:56px 48px 100px;}
+.page-header{margin-bottom:48px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.ext-hero{display:flex;align-items:center;gap:18px;margin-bottom:20px;}
+.ext-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#d97706,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 24px rgba(245,158,11,0.3);}
+.ext-info h1{font-size:clamp(24px,3.5vw,38px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;}
+.ext-info h1 span{background:linear-gradient(135deg,#fde68a,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ext-info .sub{font-size:14px;color:var(--text-dim);margin-top:4px;}
+.meta-row{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.4);}
+.meta-row strong{color:rgba(255,255,255,0.65);}
+.promise{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:20px 24px;margin-bottom:40px;font-size:15px;color:rgba(255,255,255,0.75);line-height:1.65;}
+.promise strong{color:white;}
+.section{margin-bottom:44px;}
+h2.sh{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin-bottom:18px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+h2.sh .sn{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#d97706,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;color:#1a0e00;}
+h3.shs{font-size:15px;font-weight:700;color:var(--gold);margin-bottom:10px;margin-top:20px;}
+p{font-size:14px;color:var(--text-dim);margin-bottom:14px;}
+ul.pl{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+ul.pl li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:9px;}
+ul.pl li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+ul.xl{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+ul.xl li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:8px;}
+ul.xl li::before{content:'✕';color:rgba(239,68,68,0.7);font-size:11px;margin-top:3px;flex-shrink:0;}
+ul.cl li::before{content:'✓';color:#4ade80;font-size:11px;margin-top:3px;flex-shrink:0;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0 16px;}
+th{text-align:left;padding:9px 14px;background:rgba(245,158,11,0.1);color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
+th:first-child{border-radius:8px 0 0 8px;}th:last-child{border-radius:0 8px 8px 0;}
+td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td:first-child{font-family:monospace;font-size:12px;color:var(--gold);white-space:nowrap;}
+.callout{border-radius:12px;padding:16px 20px;margin:16px 0;display:flex;gap:12px;align-items:flex-start;}
+.callout-gold{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);}
+.callout-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+.callout-text{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.callout-text strong{color:white;}
+.summary-box{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:24px 28px;margin:24px 0;}
+.summary-box h3{font-size:17px;font-weight:800;color:var(--gold);margin-bottom:14px;}
+.contact-card{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:14px;padding:28px;text-align:center;}
+.contact-card h3{font-size:19px;font-weight:800;margin-bottom:8px;}
+.contact-card p{font-size:14px;margin-bottom:18px;}
+.contact-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#1a0e00;text-decoration:none;padding:10px 22px;border-radius:9px;font-size:14px;font-weight:800;box-shadow:0 4px 18px rgba(245,158,11,0.3);}
+footer{position:relative;z-index:1;padding:30px 48px;border-top:1px solid var(--border);background:rgba(8,6,0,0.5);}
+.f-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.f-links{display:flex;gap:18px;}.f-link{color:rgba(255,255,255,0.35);text-decoration:none;font-size:13px;transition:color 0.2s;}.f-link:hover{color:var(--gold);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.25);border-radius:3px;}
+@media(max-width:700px){nav{padding:0 16px;}.page{padding:36px 16px 80px;}footer{padding:24px 16px;}}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <div class="n-links">
+    <a href="privacy.html" class="n-link">All Policies</a>
+    <a href="boltforce.html" class="n-link">BoltForce</a>
+    <a href="index.html" class="n-home">🏠 Home</a>
+  </div>
+</nav>
+<div class="page">
+  <div class="page-header">
+    <div class="ext-hero">
+      <div class="ext-badge">⚡</div>
+      <div class="ext-info">
+        <h1><span>BoltForce</span> — Privacy Policy</h1>
+        <div class="sub">Chrome Extension · Manifest V3 · Salesforce Dev Toolkit · by SCube</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <span><strong>Effective date:</strong> June 1, 2026</span>
+      <span><strong>Last updated:</strong> June 8, 2026</span>
+      <span><strong>Version:</strong> 2.0.2</span>
+      <span><strong>Contact:</strong> scubedevelopmentteam@gmail.com</span>
+    </div>
+  </div>
+  <div class="promise">
+    ✅ <strong>Privacy commitment:</strong> BoltForce collects ZERO personal data, uses NO analytics, and transmits NO information to external servers. All data processing occurs entirely within your browser and between your browser and your own Salesforce org.
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">1</div>What We Do NOT Collect</h2>
+    <p>BoltForce does not collect, transmit, store, or share:</p>
+    <ul class="xl">
+      <li>Personal information (name, email, address, phone number)</li>
+      <li>Salesforce data (records, query results, org data)</li>
+      <li>User credentials (passwords, security tokens)</li>
+      <li>Usage analytics or telemetry</li>
+      <li>Browsing history</li>
+      <li>User behaviour tracking or IP addresses</li>
+      <li>Device information or location data</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">2</div>Data Stored Locally (Your Browser Only)</h2>
+    <p>BoltForce stores the following data locally in your browser using Chrome's storage API. This data <strong>never leaves your device</strong>:</p>
+    <h3 class="shs">User Preferences</h3>
+    <ul class="pl">
+      <li>Theme selection (light/dark mode), default API version, CSV separator preference</li>
+      <li>Keyboard shortcut configurations, feature visibility settings</li>
+    </ul>
+    <h3 class="shs">Query History</h3>
+    <ul class="pl">
+      <li>Last 50 SOQL queries you've run — used to help you repeat common queries</li>
+      <li>Stored only in your browser's local storage; can be cleared anytime via extension settings</li>
+    </ul>
+    <h3 class="shs">Saved Queries</h3>
+    <ul class="pl">
+      <li>SOQL queries you've explicitly saved, with user-defined names and descriptions</li>
+    </ul>
+    <h3 class="shs">Connection Information</h3>
+    <ul class="pl">
+      <li>Last used Salesforce org URL and org type (Production/Sandbox) — for auto-reconnection convenience only</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">3</div>How We Access Salesforce</h2>
+    <div class="callout callout-gold">
+      <div class="callout-icon">🔑</div>
+      <div class="callout-text"><strong>BoltForce reads your Salesforce session cookie (<code>sid</code>) read-only to make authenticated API calls directly to Salesforce.</strong> The token is held in browser memory for the duration of your session and is never stored persistently, logged, or transmitted to any external server.</div>
+    </div>
+    <ul class="pl">
+      <li><strong>Detection:</strong> When you visit a Salesforce page, BoltForce detects your active session</li>
+      <li><strong>API calls:</strong> Your session token is used to make authenticated REST API calls directly to Salesforce</li>
+      <li><strong>Direct communication:</strong> All API calls go from your browser → your Salesforce org only</li>
+      <li><strong>No intermediaries:</strong> We do not route your data through any external servers</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">4</div>Permissions Explained</h2>
+    <table>
+      <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+      <tbody>
+        <tr><td>activeTab</td><td>Detects when you're on a Salesforce page to provide contextual features like field tooltips and quick actions. Only reads page metadata.</td></tr>
+        <tr><td>cookies</td><td>Reads Salesforce session cookies (read-only) to authenticate REST API requests. Tokens are used exclusively for Salesforce API calls and never transmitted externally.</td></tr>
+        <tr><td>storage</td><td>Saves preferences, saved queries, and SOQL history locally in Chrome's local storage. Data never syncs or transmits externally.</td></tr>
+        <tr><td>scripting</td><td>Injects helpful UI enhancements on Salesforce pages — field tooltips, SOQL editor overlay, keyboard shortcuts, component locator. Scripts operate in an isolated sandbox.</td></tr>
+        <tr><td>contextMenus</td><td>Adds right-click menu options for quick actions like "Run SOQL" and "Copy Record ID". All operations use Salesforce's official APIs.</td></tr>
+        <tr><td>*.salesforce.com / *.force.com / *.cloudforce.com / *.visualforce.com</td><td>Required to interact with Salesforce domains for API calls and to inject the extension UI into Salesforce pages.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">5</div>Data Security</h2>
+    <ul class="pl">
+      <li>All API calls use HTTPS — direct browser-to-Salesforce communication, no man-in-the-middle servers</li>
+      <li>All data operations occur within your browser; no data is sent to external servers or databases</li>
+      <li>No analytics platforms, crash reporting services, advertising networks, or external CDNs</li>
+      <li>The Extension uses Chrome Manifest V3, which enforces strict Content Security Policy and prohibits remote code execution</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">6</div>Your Data Rights</h2>
+    <ul class="pl">
+      <li><strong>Access:</strong> All data BoltForce stores is visible to you via the extension settings</li>
+      <li><strong>Delete specific data:</strong> Remove individual queries or settings from within the extension</li>
+      <li><strong>Delete all data:</strong> Extension settings → "Clear All Data"</li>
+      <li><strong>Uninstall:</strong> Removes all extension data from your browser automatically</li>
+      <li><strong>Export:</strong> Settings → Export Queries to save your saved queries as JSON</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">7</div>Children's Privacy</h2>
+    <p>The Extension is not directed at children under the age of 13 and does not knowingly collect any information from children. It is a professional tool intended for Salesforce administrators and developers.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">8</div>Changes to This Policy</h2>
+    <p>If this Privacy Policy is updated, the revised version will be published at this URL with an updated "Last Updated" date. Given that the Extension collects no user data, material changes to this policy are unlikely.</p>
+  </div>
+
+  <div class="summary-box">
+    <h3>Summary — In Plain English</h3>
+    <ul class="pl cl">
+      <li><strong>We collect nothing:</strong> No personal data, no analytics, no tracking</li>
+      <li><strong>Everything stays local:</strong> All data in your browser only</li>
+      <li><strong>Direct to Salesforce:</strong> API calls go straight from you to your org</li>
+      <li><strong>You control your data:</strong> Clear it anytime from extension settings</li>
+      <li><strong>No backend:</strong> SCube operates no servers, databases, or infrastructure</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">9</div>Contact</h2>
+    <div class="contact-card">
+      <h3>SCube Development Team</h3>
+      <p>Questions about BoltForce's privacy practices? We typically respond within 2 business days.</p>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="contact-link">✉️ scubedevelopmentteam@gmail.com</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="n-cube" style="width:28px;height:28px;font-size:12px;">S</div>
+      <span style="font-size:15px;font-weight:800;">SCube · BoltForce</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">🏠 Home</a>
+      <a href="privacy.html" class="f-link">All Policies</a>
+      <a href="boltforce.html" class="f-link">BoltForce Page</a>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="f-link">Contact</a>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.25);">© 2026 SCube</div>
+  </div>
+</footer>
+</body>
+</html>

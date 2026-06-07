@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — SCube Gmail SyncForce</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --green:#34a853;--blue:#4285f4;--bg:#080d0a;--navy:#001226;
+  --white:#fff;--text-dim:rgba(255,255,255,0.65);--border:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.7;}
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 10% 35%,rgba(52,168,83,0.1) 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 10%,rgba(66,133,244,0.08) 0%,transparent 50%),
+             linear-gradient(135deg,#050805 0%,#080d0a 50%,#060a0e 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(52,168,83,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(52,168,83,0.03) 1px,transparent 1px);
+  background-size:60px 60px;}
+nav{position:sticky;top:0;z-index:1000;height:64px;display:flex;align-items:center;padding:0 48px;
+  background:rgba(5,8,5,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(52,168,83,0.1);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#34a853,#4285f4);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;box-shadow:0 0 14px rgba(52,168,83,0.3);}
+.n-name{font-size:18px;font-weight:800;}.n-name span{color:var(--green);}
+.n-links{display:flex;gap:6px;margin-left:auto;align-items:center;}
+.n-link{color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:6px;transition:all 0.2s;}
+.n-link:hover{color:white;background:rgba(255,255,255,0.06);}
+.n-home{background:rgba(52,168,83,0.12);color:var(--green);border:1px solid rgba(52,168,83,0.25);text-decoration:none;font-size:13px;font-weight:700;padding:7px 16px;border-radius:8px;margin-left:4px;transition:all 0.2s;}
+.n-home:hover{background:rgba(52,168,83,0.2);}
+.page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:56px 48px 100px;}
+.page-header{margin-bottom:48px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.ext-hero{display:flex;align-items:center;gap:18px;margin-bottom:20px;}
+.ext-badge{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#34a853,#4285f4);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 24px rgba(52,168,83,0.3);}
+.ext-info h1{font-size:clamp(24px,3.5vw,38px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;}
+.ext-info h1 span{background:linear-gradient(135deg,#d4edda,#34a853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ext-info .sub{font-size:14px;color:var(--text-dim);margin-top:4px;}
+.meta-row{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.4);}
+.meta-row strong{color:rgba(255,255,255,0.65);}
+.promise{background:rgba(52,168,83,0.08);border:1px solid rgba(52,168,83,0.2);border-radius:14px;padding:20px 24px;margin-bottom:40px;font-size:15px;color:rgba(255,255,255,0.75);line-height:1.65;}
+.promise strong{color:white;}
+.section{margin-bottom:44px;}
+h2.sh{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin-bottom:18px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+h2.sh .sn{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#34a853,#4285f4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+p{font-size:14px;color:var(--text-dim);margin-bottom:14px;}
+ul.pl{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+ul.pl li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:9px;}
+ul.pl li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0 16px;}
+th{text-align:left;padding:9px 14px;background:rgba(52,168,83,0.1);color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
+th:first-child{border-radius:8px 0 0 8px;}th:last-child{border-radius:0 8px 8px 0;}
+td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+td:first-child{font-family:monospace;font-size:12px;color:var(--green);white-space:nowrap;}
+.callout{border-radius:12px;padding:16px 20px;margin:16px 0;display:flex;gap:12px;align-items:flex-start;}
+.callout-green{background:rgba(52,168,83,0.08);border:1px solid rgba(52,168,83,0.2);}
+.callout-blue{background:rgba(66,133,244,0.08);border:1px solid rgba(66,133,244,0.2);}
+.callout-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+.callout-text{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.callout-text strong{color:white;}
+.contact-card{background:rgba(52,168,83,0.08);border:1px solid rgba(52,168,83,0.2);border-radius:14px;padding:28px;text-align:center;}
+.contact-card h3{font-size:19px;font-weight:800;margin-bottom:8px;}
+.contact-card p{font-size:14px;margin-bottom:18px;}
+.contact-link{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#34a853,#1a8f3c);color:white;text-decoration:none;padding:10px 22px;border-radius:9px;font-size:14px;font-weight:700;box-shadow:0 4px 18px rgba(52,168,83,0.3);}
+footer{position:relative;z-index:1;padding:30px 48px;border-top:1px solid var(--border);background:rgba(5,8,5,0.5);}
+.f-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.f-links{display:flex;gap:18px;}.f-link{color:rgba(255,255,255,0.35);text-decoration:none;font-size:13px;transition:color 0.2s;}.f-link:hover{color:var(--green);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:rgba(52,168,83,0.25);border-radius:3px;}
+@media(max-width:700px){nav{padding:0 16px;}.page{padding:36px 16px 80px;}footer{padding:24px 16px;}}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <div class="n-links">
+    <a href="privacy.html" class="n-link">All Policies</a>
+    <a href="gmail.html" class="n-link">GmailSync</a>
+    <a href="index.html" class="n-home">🏠 Home</a>
+  </div>
+</nav>
+<div class="page">
+  <div class="page-header">
+    <div class="ext-hero">
+      <div class="ext-badge">📧</div>
+      <div class="ext-info">
+        <h1><span>Gmail SyncForce</span> — Privacy Policy</h1>
+        <div class="sub">Chrome Extension · Manifest V3 · by SCube</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <span><strong>Effective date:</strong> June 2, 2026</span>
+      <span><strong>Last updated:</strong> June 8, 2026</span>
+      <span><strong>Version:</strong> 1.6.0</span>
+      <span><strong>Contact:</strong> scubedevelopmentteam@gmail.com</span>
+    </div>
+  </div>
+  <div class="promise">
+    ✅ <strong>Short version:</strong> Your data never leaves your own browser except to go directly to your own Salesforce org or your chosen AI provider using your own API key. We collect nothing. We store nothing on our servers. We have no servers.
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">1</div>Overview</h2>
+    <p>SCube Gmail SyncForce is a Chrome browser extension that bridges Gmail and Salesforce. This Privacy Policy explains what data the Extension accesses, how it is used, and what it never does with your data.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">2</div>Data the Extension Accesses</h2>
+    <p>The Extension reads the following data solely to perform its core function — logging Gmail emails to Salesforce:</p>
+    <ul class="pl">
+      <li><strong>Email content</strong> — sender, recipients, subject, body text, and attachments of the currently open Gmail thread</li>
+      <li><strong>Gmail thread metadata</strong> — thread ID used to detect duplicate logging</li>
+      <li><strong>Salesforce OAuth token</strong> — obtained via OAuth 2.0; stored only in <code style="font-size:11px;background:rgba(52,168,83,0.12);padding:1px 5px;border-radius:3px;">chrome.storage.local</code> on your device</li>
+      <li><strong>User settings</strong> — AI provider choice, muting rules, theme, field mappings; stored locally only</li>
+      <li><strong>AI API keys</strong> — Anthropic, OpenAI, or Google keys you optionally enter; stored locally only</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">3</div>How Data Is Used</h2>
+    <ul class="pl">
+      <li><strong>Salesforce logging</strong> — email subject, body, and participant details are sent directly from your browser to your Salesforce org via the REST API to create Tasks</li>
+      <li><strong>Contact/Lead matching</strong> — sender email addresses are sent to your Salesforce org in SOQL queries to find matching records</li>
+      <li><strong>AI summarisation</strong> — when you click "Summarise Thread", the email body is sent to your chosen AI provider using your own BYOK API key</li>
+      <li><strong>Local activity log</strong> — a log of logged emails is stored locally in <code style="font-size:11px;background:rgba(52,168,83,0.12);padding:1px 5px;border-radius:3px;">chrome.storage.local</code> and displayed in the extension popup; never leaves your device</li>
+    </ul>
+    <div class="callout callout-blue">
+      <div class="callout-icon">📌</div>
+      <div class="callout-text"><strong>All network requests go directly from your browser to either your Salesforce org or your AI provider.</strong> There is no intermediate server, proxy, or third-party service operated by SCube.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">4</div>Data We Do NOT Collect</h2>
+    <ul class="pl">
+      <li>We do <strong>not</strong> collect, transmit, or store any email content on any server we operate</li>
+      <li>We do <strong>not</strong> collect analytics, usage metrics, crash reports, or telemetry of any kind</li>
+      <li>We do <strong>not</strong> collect your Salesforce credentials, OAuth tokens, or AI API keys — they remain on your device only</li>
+      <li>We do <strong>not</strong> share any data with any third party except your own Salesforce org and your chosen AI provider (using your own key)</li>
+      <li>We do <strong>not</strong> use cookies or tracking pixels</li>
+      <li>We do <strong>not</strong> have user accounts, registration, or any server-side infrastructure</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">5</div>Permissions Explained</h2>
+    <table>
+      <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+      <tbody>
+        <tr><td>storage</td><td>Saves OAuth tokens, settings, AI API keys, and activity log locally on your device. Nothing is sent externally.</td></tr>
+        <tr><td>identity</td><td>Launches Salesforce OAuth 2.0 flow via <code>chrome.identity.launchWebAuthFlow</code> to obtain an access token.</td></tr>
+        <tr><td>tabs</td><td>Detects Gmail tab navigation to inject the extension button; opens linked Salesforce records in a new tab.</td></tr>
+        <tr><td>alarms</td><td>Powers the Send Later feature — schedules a wake-up alarm to reopen and send a drafted email at the time you chose.</td></tr>
+        <tr><td>notifications</td><td>Shows a desktop notification when a Send Later email fires or an auto-log completes.</td></tr>
+        <tr><td>mail.google.com</td><td>Runs the content script that injects the SyncForce sidebar and Log button into Gmail threads.</td></tr>
+        <tr><td>*.salesforce.com / *.force.com</td><td>Makes REST API calls to your Salesforce org for SOQL queries, Task creation, file uploads, and Chatter posts.</td></tr>
+        <tr><td>api.anthropic.com / api.openai.com / generativelanguage.googleapis.com</td><td>Sends email thread text to your AI provider using your own BYOK API key, only when you click Summarise.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">6</div>Data Storage &amp; Retention</h2>
+    <p>All data stored by the Extension lives exclusively in <code style="font-size:11px;background:rgba(52,168,83,0.12);padding:1px 5px;border-radius:3px;">chrome.storage.local</code> on your device:</p>
+    <ul class="pl">
+      <li><strong>OAuth token</strong> — retained until you click "Disconnect" in the popup or uninstall the Extension</li>
+      <li><strong>Settings and API keys</strong> — retained until you clear them or uninstall the Extension</li>
+      <li><strong>Activity log</strong> — retained locally; you can clear it from the Activity tab at any time</li>
+    </ul>
+    <p>Uninstalling the Extension removes all locally stored data automatically via Chrome's standard extension lifecycle.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">7</div>Third-Party Services</h2>
+    <p>The Extension communicates with the following third-party services solely on your instruction and using your own credentials:</p>
+    <ul class="pl">
+      <li><strong>Salesforce</strong> — your own org. Governed by your Salesforce agreement and Salesforce's Privacy Policy.</li>
+      <li><strong>Anthropic Claude API</strong> (optional, BYOK) — governed by Anthropic's Privacy Policy.</li>
+      <li><strong>OpenAI API</strong> (optional, BYOK) — governed by OpenAI's Privacy Policy.</li>
+      <li><strong>Google Gemini API</strong> (optional, BYOK) — governed by Google's Privacy Policy.</li>
+    </ul>
+    <p>The Extension does not use any analytics, advertising, or tracking SDKs.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">8</div>Security</h2>
+    <ul class="pl">
+      <li>All communication with Salesforce and AI providers uses HTTPS/TLS</li>
+      <li>OAuth tokens and API keys are stored only in <code style="font-size:11px;background:rgba(52,168,83,0.12);padding:1px 5px;border-radius:3px;">chrome.storage.local</code>, sandboxed to the Extension</li>
+      <li>The Extension uses Chrome Manifest V3, which prohibits remote code execution</li>
+      <li>No Consumer Key or Consumer Secret is hardcoded in the Extension</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">9</div>Children's Privacy</h2>
+    <p>The Extension is not directed at children under the age of 13 and does not knowingly collect any information from children. It is a professional productivity tool for Salesforce users in a business context.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">10</div>Changes to This Policy</h2>
+    <p>If this Privacy Policy is updated, the revised version will be published at this URL with an updated "Last Updated" date. Continued use of the Extension after any changes constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="section">
+    <h2 class="sh"><div class="sn">11</div>Contact</h2>
+    <div class="contact-card">
+      <h3>SCube Development Team</h3>
+      <p>Questions about Gmail SyncForce's privacy practices? We typically respond within 2 business days.</p>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="contact-link">✉️ scubedevelopmentteam@gmail.com</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="n-cube" style="width:28px;height:28px;font-size:12px;">S</div>
+      <span style="font-size:15px;font-weight:800;">SCube · Gmail SyncForce</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">🏠 Home</a>
+      <a href="privacy.html" class="f-link">All Policies</a>
+      <a href="gmail.html" class="f-link">GmailSync Page</a>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="f-link">Contact</a>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.25);">© 2026 SCube</div>
+  </div>
+</footer>
+</body>
+</html>

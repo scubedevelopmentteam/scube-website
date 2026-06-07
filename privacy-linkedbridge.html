@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — SCube LinkedBridge Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --li:#0077b5;--li-light:#00a0dc;--bg:#00080f;
+  --white:#fff;--text-dim:rgba(255,255,255,0.65);--border:rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.7;}
+.bg-canvas{position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 10% 35%,rgba(0,119,181,0.13) 0%,transparent 55%),
+             radial-gradient(ellipse at 88% 12%,rgba(0,160,220,0.09) 0%,transparent 50%),
+             linear-gradient(135deg,#000608 0%,#00080f 50%,#000c18 100%);}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,119,181,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,119,181,0.04) 1px,transparent 1px);
+  background-size:60px 60px;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;height:64px;display:flex;align-items:center;padding:0 48px;
+  background:rgba(0,8,15,0.93);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,119,181,0.12);}
+.n-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.n-cube{width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,#0077b5,#00a0dc);
+  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;
+  box-shadow:0 0 14px rgba(0,119,181,0.35);}
+.n-name{font-size:18px;font-weight:800;color:white;}
+.n-name span{color:var(--li-light);}
+.n-links{display:flex;gap:6px;margin-left:auto;align-items:center;}
+.n-link{color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:6px;transition:all 0.2s;}
+.n-link:hover{color:white;background:rgba(255,255,255,0.06);}
+.n-home{background:rgba(0,119,181,0.12);color:var(--li-light);border:1px solid rgba(0,119,181,0.28);
+  text-decoration:none;font-size:13px;font-weight:700;padding:7px 16px;border-radius:8px;margin-left:4px;transition:all 0.2s;}
+.n-home:hover{background:rgba(0,119,181,0.22);}
+
+/* PAGE */
+.page{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:56px 48px 100px;}
+
+/* HEADER */
+.page-header{margin-bottom:48px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.ext-hero{display:flex;align-items:center;gap:18px;margin-bottom:20px;}
+.ext-badge{width:56px;height:56px;border-radius:14px;
+  background:linear-gradient(135deg,#0077b5,#00a0dc);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  box-shadow:0 0 24px rgba(0,119,181,0.35);}
+.ext-info h1{font-size:clamp(24px,3.5vw,38px);font-weight:900;letter-spacing:-0.03em;line-height:1.1;}
+.ext-info h1 span{background:linear-gradient(135deg,#cce7f6,#00a0dc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ext-info .sub{font-size:14px;color:var(--text-dim);margin-top:4px;}
+.meta-row{display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,0.38);}
+.meta-row strong{color:rgba(255,255,255,0.62);}
+
+/* VERSION BADGE */
+.v-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,119,181,0.12);
+  border:1px solid rgba(0,160,220,0.25);color:var(--li-light);
+  border-radius:30px;padding:4px 12px;font-size:11px;font-weight:700;margin-top:12px;}
+.v-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;}
+
+/* PROMISE BOX */
+.promise{background:rgba(0,119,181,0.08);border:1px solid rgba(0,119,181,0.22);
+  border-radius:14px;padding:20px 24px;margin-bottom:44px;
+  font-size:15px;color:rgba(255,255,255,0.75);line-height:1.65;}
+.promise strong{color:white;}
+
+/* SECTIONS */
+.section{margin-bottom:48px;}
+h2.sh{font-size:20px;font-weight:800;letter-spacing:-0.02em;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+h2.sh .sn{width:26px;height:26px;border-radius:6px;
+  background:linear-gradient(135deg,#0077b5,#00a0dc);
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+h3.shs{font-size:14px;font-weight:700;color:var(--li-light);
+  margin-bottom:10px;margin-top:22px;display:flex;align-items:center;gap:7px;}
+h3.shs::before{content:'';width:3px;height:14px;background:var(--li-light);border-radius:2px;flex-shrink:0;}
+p{font-size:14px;color:var(--text-dim);margin-bottom:14px;}
+code{font-size:11px;background:rgba(0,119,181,0.14);padding:1px 5px;border-radius:3px;font-family:monospace;}
+
+/* LISTS */
+ul.pl{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+ul.pl li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:9px;}
+ul.pl li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--li-light);flex-shrink:0;margin-top:7px;}
+ul.xl{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+ul.xl li{font-size:14px;color:var(--text-dim);display:flex;align-items:flex-start;gap:8px;}
+ul.xl li::before{content:'✕';color:rgba(239,68,68,0.7);font-size:11px;margin-top:3px;flex-shrink:0;}
+
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0 18px;}
+th{text-align:left;padding:9px 14px;background:rgba(0,119,181,0.1);
+  color:rgba(255,255,255,0.48);font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.05em;}
+th:first-child{border-radius:8px 0 0 8px;}
+th:last-child{border-radius:0 8px 8px 0;}
+td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.05);vertical-align:top;color:var(--text-dim);}
+tr:last-child td{border-bottom:none;}
+td.key{font-family:monospace;font-size:12px;color:var(--li-light);white-space:nowrap;}
+td.field{font-family:monospace;font-size:11px;color:#7dd3fc;white-space:nowrap;}
+
+/* CRM GRID */
+.crm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:16px 0;}
+.crm-card{background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:16px 18px;transition:all 0.2s;}
+.crm-card:hover{background:rgba(0,119,181,0.06);border-color:rgba(0,119,181,0.22);}
+.crm-card-icon{font-size:22px;margin-bottom:8px;}
+.crm-card-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+.crm-card-detail{font-size:12px;color:rgba(255,255,255,0.4);}
+.live-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;
+  background:rgba(34,197,94,0.12);color:#4ade80;
+  border:1px solid rgba(34,197,94,0.25);border-radius:20px;
+  padding:2px 8px;font-size:10px;font-weight:700;}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;}
+
+/* CALLOUTS */
+.callout{border-radius:12px;padding:16px 20px;margin:16px 0;display:flex;gap:12px;align-items:flex-start;}
+.callout-blue{background:rgba(0,119,181,0.08);border:1px solid rgba(0,119,181,0.22);}
+.callout-warn{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);}
+.callout-green{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);}
+.callout-icon{font-size:17px;flex-shrink:0;margin-top:1px;}
+.callout-text{font-size:13px;color:var(--text-dim);line-height:1.65;}
+.callout-text strong{color:white;}
+
+/* STORAGE KEY TABLE */
+.sk-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0;}
+.sk-table th{text-align:left;padding:8px 12px;background:rgba(0,119,181,0.08);
+  color:rgba(255,255,255,0.45);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}
+.sk-table th:first-child{border-radius:7px 0 0 7px;}
+.sk-table th:last-child{border-radius:0 7px 7px 0;}
+.sk-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;color:var(--text-dim);}
+.sk-table tr:last-child td{border-bottom:none;}
+
+/* CONTACT CARD */
+.contact-card{background:rgba(0,119,181,0.08);border:1px solid rgba(0,119,181,0.22);
+  border-radius:14px;padding:28px;text-align:center;}
+.contact-card h3{font-size:19px;font-weight:800;margin-bottom:8px;}
+.contact-card p{font-size:14px;margin-bottom:18px;}
+.contact-link{display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#0077b5,#00a0dc);color:white;text-decoration:none;
+  padding:10px 22px;border-radius:9px;font-size:14px;font-weight:700;
+  box-shadow:0 4px 18px rgba(0,119,181,0.3);}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:30px 48px;border-top:1px solid var(--border);background:rgba(0,8,15,0.5);}
+.f-inner{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.f-links{display:flex;gap:18px;}
+.f-link{color:rgba(255,255,255,0.35);text-decoration:none;font-size:13px;transition:color 0.2s;}
+.f-link:hover{color:var(--li-light);}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(0,119,181,0.3);border-radius:3px;}
+@media(max-width:700px){
+  nav{padding:0 16px;}.page{padding:36px 16px 80px;}footer{padding:24px 16px;}
+  .crm-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="bg-canvas"></div>
+<div class="grid"></div>
+
+<nav>
+  <a href="index.html" class="n-logo">
+    <div class="n-cube">S</div>
+    <span class="n-name">S<span>Cube</span></span>
+  </a>
+  <div class="n-links">
+    <a href="privacy.html" class="n-link">All Policies</a>
+    <a href="linkedin.html" class="n-link">LinkedBridge</a>
+    <a href="index.html" class="n-home">🏠 Home</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="ext-hero">
+      <div class="ext-badge">🔗</div>
+      <div class="ext-info">
+        <h1><span>LinkedBridge Pro</span> — Privacy Policy</h1>
+        <div class="sub">Chrome Extension · Manifest V3 · LinkedIn to CRM · by SCube</div>
+      </div>
+    </div>
+    <div class="meta-row">
+      <span><strong>Effective date:</strong> June 4, 2026</span>
+      <span><strong>Last updated:</strong> June 8, 2026</span>
+      <span><strong>Version:</strong> 3.0.0</span>
+      <span><strong>Contact:</strong> scubedevelopmentteam@gmail.com</span>
+    </div>
+    <div class="v-badge"><span class="v-dot"></span> v3.0.0 — Multi-CRM Edition (Salesforce · HubSpot · Zoho · Dynamics 365 · Pipedrive)</div>
+  </div>
+
+  <div class="promise">
+    ✅ <strong>Short version:</strong> Your data never leaves your own browser except to go directly to the CRM you configure, using your own OAuth credentials or API key. We collect nothing. We have no servers. All LinkedIn data you extract goes only where you explicitly tell it to go.
+  </div>
+
+  <!-- 1. OVERVIEW -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">1</div>Overview</h2>
+    <p>SCube LinkedBridge Pro is a Chrome extension that reads publicly visible data from LinkedIn profile pages, company pages, search results, and posts — and lets you save that data as records in the CRM you connect. This policy explains exactly what data is accessed, where it goes, and what we never do with it.</p>
+    <p>Version 3.0.0 adds support for HubSpot, Zoho CRM (all regions), Microsoft Dynamics 365, and Pipedrive alongside the original Salesforce integration. The privacy model is identical for all CRMs: data flows directly from your browser to the CRM you configure — SCube operates no intermediate server.</p>
+  </div>
+
+  <!-- 2. SUPPORTED CRMs -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">2</div>Supported CRMs — Data Destinations</h2>
+    <p>The following CRMs are fully supported in v3.0.0. Data is only ever sent to the CRM you have connected and authenticated — no data is sent to any CRM you have not configured.</p>
+    <div class="crm-grid">
+      <div class="crm-card">
+        <div class="crm-card-icon">☁️</div>
+        <div class="crm-card-name">Salesforce</div>
+        <div class="crm-card-detail">Leads · Contacts · Accounts · Tasks<br>OAuth 2.0 (authorization code)</div>
+        <div class="live-badge"><span class="live-dot"></span>Live</div>
+      </div>
+      <div class="crm-card">
+        <div class="crm-card-icon">🟠</div>
+        <div class="crm-card-name">HubSpot</div>
+        <div class="crm-card-detail">Contacts · Companies<br>Private App token</div>
+        <div class="live-badge"><span class="live-dot"></span>Live</div>
+      </div>
+      <div class="crm-card">
+        <div class="crm-card-icon">🔴</div>
+        <div class="crm-card-name">Zoho CRM</div>
+        <div class="crm-card-detail">Leads · Contacts · Accounts<br>OAuth 2.0 · All 5 regions</div>
+        <div class="live-badge"><span class="live-dot"></span>Live</div>
+      </div>
+      <div class="crm-card">
+        <div class="crm-card-icon">🔷</div>
+        <div class="crm-card-name">Dynamics 365</div>
+        <div class="crm-card-detail">Leads · Contacts · Accounts<br>Azure AD OAuth (PKCE)</div>
+        <div class="live-badge"><span class="live-dot"></span>Live</div>
+      </div>
+      <div class="crm-card">
+        <div class="crm-card-icon">🟢</div>
+        <div class="crm-card-name">Pipedrive</div>
+        <div class="crm-card-detail">Persons · Organizations<br>API token</div>
+        <div class="live-badge"><span class="live-dot"></span>Live</div>
+      </div>
+    </div>
+    <div class="callout callout-blue">
+      <div class="callout-icon">🔒</div>
+      <div class="callout-text"><strong>Your CRM credentials (OAuth tokens, API keys, Client ID/Secret) are stored exclusively in <code>chrome.storage.local</code> on your device.</strong> They are never transmitted to SCube or any server other than the respective CRM authentication endpoint.</div>
+    </div>
+  </div>
+
+  <!-- 3. DATA SCRAPED FROM LINKEDIN -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">3</div>Data Read from LinkedIn</h2>
+    <p>The extension reads publicly visible information from LinkedIn pages you navigate to. It does not bypass LinkedIn authentication, access private/restricted content, or read data from pages you have not opened yourself.</p>
+
+    <h3 class="shs">Profile Pages (<code>linkedin.com/in/*</code>)</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Source</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="field">firstName, lastName, fullName</td><td>Page meta tags / title</td><td>Basic identity</td></tr>
+        <tr><td class="field">headline, title, company</td><td>Profile intro section DOM</td><td>Current role</td></tr>
+        <tr><td class="field">location, city, state, country</td><td>Profile intro section DOM</td><td>Parsed from location string</td></tr>
+        <tr><td class="field">pronoun</td><td>Profile intro section DOM</td><td>e.g. He/Him, They/Them</td></tr>
+        <tr><td class="field">connections</td><td>Profile page DOM</td><td>e.g. "500+ connections"</td></tr>
+        <tr><td class="field">linkedinUrl</td><td>window.location.href</td><td>Current page URL</td></tr>
+        <tr><td class="field">photoUrl</td><td>og:image meta tag</td><td>Public profile photo URL</td></tr>
+        <tr><td class="field">email, phone, website, birthday, twitter, address</td><td>Contact Info modal</td><td>Only if you open Contact Info; visible to you as a logged-in member</td></tr>
+        <tr><td class="field">about</td><td>About section DOM</td><td>Summary text</td></tr>
+        <tr><td class="field">experience[]</td><td>Experience section DOM</td><td>Up to 10 entries: title, company, date</td></tr>
+        <tr><td class="field">education[], school, degree</td><td>Education section DOM</td><td>Up to 10 entries</td></tr>
+        <tr><td class="field">skills[]</td><td>Skills section DOM</td><td>Up to 20 skills</td></tr>
+        <tr><td class="field">certifications[]</td><td>Licenses section DOM</td><td>Up to 10 entries</td></tr>
+        <tr><td class="field">languages[]</td><td>Languages section DOM</td><td>Up to 10 entries</td></tr>
+        <tr><td class="field">volunteer[]</td><td>Volunteering section DOM</td><td>Up to 5 entries</td></tr>
+        <tr><td class="field">honors[]</td><td>Honors section DOM</td><td>Up to 5 entries</td></tr>
+        <tr><td class="field">recentPosts[]</td><td>Activity section DOM</td><td>Up to 3 post previews (200 chars each)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="shs">Company Pages (<code>linkedin.com/company/*</code>)</h3>
+    <table>
+      <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="field">name, linkedinUrl, logoUrl, tagline</td><td>Company identity</td></tr>
+        <tr><td class="field">industry, type, founded, headquarters</td><td>Company facts section</td></tr>
+        <tr><td class="field">city, state, country, street</td><td>Parsed from headquarters/address</td></tr>
+        <tr><td class="field">website, phone</td><td>From company facts</td></tr>
+        <tr><td class="field">employeeRange, numberOfEmployees, employeesOnLinkedIn, followers</td><td>Headcount data</td></tr>
+        <tr><td class="field">about, specialties</td><td>About section text</td></tr>
+        <tr><td class="field">recentPosts[]</td><td>Up to 3 recent post previews</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="shs">Search Results (<code>linkedin.com/search/results/*</code>)</h3>
+    <p>When you use bulk-queue mode on a search results page, the extension reads the visible result cards: name, headline, company, location, LinkedIn URL, and profile photo for each visible result. No background scraping occurs — only cards visible on screen at the time you trigger extraction.</p>
+
+    <h3 class="shs">Posts &amp; Events (<code>linkedin.com/feed/update/*</code>, <code>/posts/*</code>, <code>/events/*</code>)</h3>
+    <p>When you use the post-reactions or event-attendees feature, the extension reads the list of people who reacted to a post or RSVPd to an event: name, headline, LinkedIn URL, and profile photo. Only the data visible in the panel LinkedIn shows you as a logged-in member is read.</p>
+
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-text"><strong>LinkedIn Terms of Service:</strong> This extension reads publicly visible information displayed to you as a logged-in LinkedIn member. It does not automate scraping at scale, bypass authentication, or access data you could not manually see. You are responsible for ensuring your use complies with LinkedIn's User Agreement and applicable law.</div>
+    </div>
+  </div>
+
+  <!-- 4. DATA NOT COLLECTED -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">4</div>Data We Do NOT Collect</h2>
+    <ul class="xl">
+      <li>We do <strong>not</strong> collect, transmit, or store any LinkedIn or CRM data on any server we operate</li>
+      <li>We do <strong>not</strong> collect analytics, usage metrics, crash reports, or telemetry of any kind</li>
+      <li>We do <strong>not</strong> collect your CRM credentials, OAuth tokens, or enrichment API keys — they remain on your device only</li>
+      <li>We do <strong>not</strong> share data with any third party except the CRM you configure and any enrichment provider you explicitly connect using your own API key</li>
+      <li>We do <strong>not</strong> use cookies, tracking pixels, or fingerprinting</li>
+      <li>We do <strong>not</strong> operate user accounts, registration, or any server-side infrastructure</li>
+    </ul>
+    <div class="callout callout-green">
+      <div class="callout-icon">✅</div>
+      <div class="callout-text"><strong>The extraction count</strong> (<code>extraction_count</code>) stored in <code>chrome.storage.sync</code> tracks only a numeric total of profiles you have extracted — it syncs across your own Chrome devices via your Google account. It contains no profile data and is never sent to SCube.</div>
+    </div>
+  </div>
+
+  <!-- 5. ENRICHMENT PROVIDERS -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">5</div>Optional Email Enrichment (BYOK)</h2>
+    <p>When you click "Enrich" on a profile, the extension can call one of three optional enrichment providers using an API key you supply. These calls are made directly from your browser to the provider — SCube does not proxy, log, or intercept them.</p>
+    <table>
+      <thead><tr><th>Provider</th><th>What is sent</th><th>Governed by</th></tr></thead>
+      <tbody>
+        <tr><td class="key">Hunter.io</td><td>Profile name and/or domain for email lookup</td><td>Hunter.io Privacy Policy</td></tr>
+        <tr><td class="key">Apollo.io</td><td>Profile name and/or domain for contact enrichment</td><td>Apollo.io Privacy Policy</td></tr>
+        <tr><td class="key">Clearbit</td><td>Profile name and/or domain for person/company enrichment</td><td>Clearbit Privacy Policy</td></tr>
+      </tbody>
+    </table>
+    <p>None of the enrichment providers are called unless you have configured that provider's API key in Settings. You can remove any provider key at any time.</p>
+  </div>
+
+  <!-- 6. PERMISSIONS -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">6</div>Chrome Permissions Explained</h2>
+    <table>
+      <thead><tr><th>Permission</th><th>Why it's needed</th></tr></thead>
+      <tbody>
+        <tr><td class="key">activeTab</td><td>Read the currently open LinkedIn page to extract profile or company data</td></tr>
+        <tr><td class="key">scripting</td><td>Inject content scripts on LinkedIn pages to read the DOM and show the sidebar UI</td></tr>
+        <tr><td class="key">storage</td><td>Store CRM connection settings, OAuth tokens, field mappings, lead scoring rules, bulk queue, activity log, and webhook config — locally in your browser only</td></tr>
+        <tr><td class="key">identity</td><td>Launch OAuth 2.0 authentication flows for Salesforce, Zoho CRM, and Dynamics 365 via <code>chrome.identity.launchWebAuthFlow</code></td></tr>
+        <tr><td class="key">alarms</td><td>Reset the daily badge counter at midnight and keep OAuth tokens refreshed in the background</td></tr>
+        <tr><td class="key">optional: &lt;all_urls&gt;</td><td>Only granted if you enable enrichment via Hunter.io, Apollo.io, or Clearbit; not requested by default</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="shs">Host Permissions (Network Access)</h3>
+    <table>
+      <thead><tr><th>Domain</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="key">linkedin.com</td><td>Read profile, company, search results, post, and event pages</td></tr>
+        <tr><td class="key">*.salesforce.com, *.force.com</td><td>OAuth, SOQL queries, and record CRUD for Salesforce</td></tr>
+        <tr><td class="key">api.hubapi.com, api.hubspot.com</td><td>Contact and company CRUD for HubSpot</td></tr>
+        <tr><td class="key">*.zohoapis.com/eu/in/com.au/jp, accounts.zoho.*</td><td>OAuth and record CRUD for Zoho CRM (all 5 regions)</td></tr>
+        <tr><td class="key">login.microsoftonline.com, *.dynamics.com</td><td>Azure AD OAuth (PKCE) and record CRUD for Dynamics 365</td></tr>
+        <tr><td class="key">api.pipedrive.com, *.pipedrive.com</td><td>Person and organization CRUD for Pipedrive</td></tr>
+        <tr><td class="key">api.hunter.io</td><td>Email enrichment — only called with your Hunter.io API key</td></tr>
+        <tr><td class="key">api.apollo.io</td><td>Contact enrichment — only called with your Apollo.io API key</td></tr>
+        <tr><td class="key">prospecting.clearbit.com</td><td>Person/company enrichment — only called with your Clearbit API key</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 7. STORAGE -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">7</div>Data Storage &amp; Retention</h2>
+    <p>All data is stored in <code>chrome.storage.local</code> on your device (or <code>chrome.storage.sync</code> for the numeric extraction counter only). The following keys are stored:</p>
+    <table class="sk-table">
+      <thead><tr><th>Key</th><th>Contents</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td class="key">sf_config / sf_token</td><td>Instance URL, Client ID/Secret, OAuth tokens</td><td>Salesforce connection</td></tr>
+        <tr><td class="key">hs_config / hs_token</td><td>HubSpot Private App token, portal ID</td><td>HubSpot connection</td></tr>
+        <tr><td class="key">zoho_config / zoho_token</td><td>Client ID/Secret, data centre, org ID, OAuth tokens</td><td>Zoho connection</td></tr>
+        <tr><td class="key">dynamics_config / dynamics_token</td><td>Instance URL, Azure Client ID/Secret, tenant ID, OAuth tokens</td><td>Dynamics 365 connection</td></tr>
+        <tr><td class="key">pipedrive_config / pipedrive_token</td><td>API base URL, API token, custom field key map</td><td>Pipedrive connection</td></tr>
+        <tr><td class="key">active_crm</td><td>"salesforce" | "hubspot" | "zoho" | "dynamics" | "pipedrive"</td><td>Currently selected CRM</td></tr>
+        <tr><td class="key">*_field_mappings</td><td>LinkedIn field → CRM field mapping per object per CRM</td><td>Custom field mapping UI</td></tr>
+        <tr><td class="key">activity_log</td><td>Last 50 save actions (CRM type, record ID, timestamp, status)</td><td>Activity history in popup</td></tr>
+        <tr><td class="key">webhook_config</td><td>Optional user-configured webhook URL + events + HMAC secret</td><td>Outbound webhook delivery</td></tr>
+        <tr><td class="key">lead_scoring</td><td>Keyword rules for lead score calculation</td><td>Lead scoring settings</td></tr>
+        <tr><td class="key">extraction_count (sync)</td><td>Numeric count of total profiles extracted</td><td>Badge counter — no profile data</td></tr>
+      </tbody>
+    </table>
+    <ul class="pl">
+      <li>All credentials and tokens are retained until you click "Disconnect" in Settings or uninstall the extension</li>
+      <li>The activity log retains the last 50 entries; older entries are automatically pruned</li>
+      <li>You can clear all stored data at any time via Settings → Clear All Data</li>
+      <li>Uninstalling the extension removes all locally stored data automatically</li>
+    </ul>
+
+    <h3 class="shs">Outbound Webhooks (Optional)</h3>
+    <p>If you enable the optional webhook feature, the extension will POST a JSON payload to a URL you specify whenever a record is created or updated. The payload contains the same data that was sent to your CRM. SCube does not see or receive these webhook calls — they go directly from your browser to your configured endpoint.</p>
+  </div>
+
+  <!-- 8. SECURITY -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">8</div>Security</h2>
+    <ul class="pl">
+      <li>All communication with CRMs and enrichment providers uses HTTPS/TLS</li>
+      <li>OAuth tokens and API keys are stored only in <code>chrome.storage.local</code>, sandboxed to the extension and inaccessible to websites or other extensions</li>
+      <li>Dynamics 365 uses PKCE (Proof Key for Code Exchange) for its OAuth flow — no client secret is transmitted in the redirect</li>
+      <li>The extension uses Chrome Manifest V3, which enforces strict Content Security Policy and prohibits remote code execution</li>
+      <li>Webhook deliveries are signed with HMAC-SHA256 using a secret you configure, so your receiving endpoint can verify authenticity</li>
+      <li>No CRM credentials are hardcoded in the extension — you enter your own</li>
+    </ul>
+    <p>To report a security vulnerability, email <a href="mailto:scubedevelopmentteam@gmail.com" style="color:var(--li-light);">scubedevelopmentteam@gmail.com</a>.</p>
+  </div>
+
+  <!-- 9. CHILDREN -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">9</div>Children's Privacy</h2>
+    <p>The extension is not directed at children under the age of 13 and does not knowingly collect any information from children. It is a professional sales productivity tool intended for use by adults in a business context.</p>
+  </div>
+
+  <!-- 10. CHANGES -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">10</div>Changes to This Policy</h2>
+    <p>When this Privacy Policy is updated — for example when a new CRM integration is added — the revised version will be published at this URL with an updated "Last Updated" date. Continued use of the extension after changes are posted constitutes your acceptance of the updated policy.</p>
+  </div>
+
+  <!-- 11. CONTACT -->
+  <div class="section">
+    <h2 class="sh"><div class="sn">11</div>Contact</h2>
+    <div class="contact-card">
+      <h3>SCube Development Team</h3>
+      <p>Questions about LinkedBridge Pro's data practices? We respond within 2 business days.</p>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="contact-link">✉️ scubedevelopmentteam@gmail.com</a>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="f-inner">
+    <div style="display:flex;align-items:center;gap:9px;">
+      <div class="n-cube" style="width:28px;height:28px;font-size:12px;">S</div>
+      <span style="font-size:15px;font-weight:800;">SCube · LinkedBridge Pro</span>
+    </div>
+    <div class="f-links">
+      <a href="index.html" class="f-link">🏠 Home</a>
+      <a href="privacy.html" class="f-link">All Policies</a>
+      <a href="linkedin.html" class="f-link">LinkedBridge Page</a>
+      <a href="mailto:scubedevelopmentteam@gmail.com" class="f-link">Contact</a>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.25);">© 2026 SCube</div>
+  </div>
+</footer>
+</body>
+</html>
